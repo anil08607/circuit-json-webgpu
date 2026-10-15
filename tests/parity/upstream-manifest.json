@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/tscircuit/circuit-to-canvas",
-  "commit": "8c3b83ec5a2bdd88351a37f5de2645c4782be7ee",
+  "commit": "094c7edc84165aaa2eca95b027ec4453f3864d7c",
   "files": {
     "LICENSE": "1d8ddb1b6231d6cc4814945445d678dc1e135ca83a69d683711e6e25e7ac7496",
     "lib/drawer/CircuitToCanvasDrawer.ts": "9ecd62705b68df380fe00c81485d2e4840e9aa1c3be8f02fa3dbde68c980bd44",
