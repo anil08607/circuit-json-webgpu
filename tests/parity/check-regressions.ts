@@ -4,6 +4,7 @@ import type { ComparisonResult, ReferenceTest } from "./types"
 
 export type ParityReport = {
   upstreamCommit: string
+  referenceSvgVersion: string
   snapshots: { pass: boolean }[]
   snapshotFailed: number
   capturedRenderCalls: number
@@ -75,6 +76,10 @@ export function findParityRegressions(
   if (base.upstreamCommit !== head.upstreamCommit)
     failures.push(
       "Reference dependency changed; compare against an audit of the same upstream revision",
+    )
+  if (base.referenceSvgVersion !== head.referenceSvgVersion)
+    failures.push(
+      "SVG reference version changed; audit both renderers with the same version",
     )
   if (
     head.snapshotFailed ||

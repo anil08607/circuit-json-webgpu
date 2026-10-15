@@ -6,6 +6,7 @@ import {
 
 const report = (): ParityReport => ({
   upstreamCommit: "same-reference",
+  referenceSvgVersion: "same-svg-reference",
   snapshots: [{ pass: true }],
   snapshotFailed: 0,
   capturedRenderCalls: 1,
@@ -62,4 +63,6 @@ test("reference test regressions and changed upstream revisions fail", () => {
   expect(findParityRegressions(report(), head)).toHaveLength(1)
   head.upstreamCommit = "different-reference"
   expect(findParityRegressions(report(), head)).toHaveLength(2)
+  head.referenceSvgVersion = "different-svg-reference"
+  expect(findParityRegressions(report(), head)).toHaveLength(3)
 })

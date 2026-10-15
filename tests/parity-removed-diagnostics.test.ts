@@ -7,6 +7,7 @@ import {
 function createParityReport(): ParityReport {
   return {
     upstreamCommit: "same-reference",
+    referenceSvgVersion: "same-svg-reference",
     snapshots: [{ pass: true }],
     snapshotFailed: 0,
     capturedRenderCalls: 1,
