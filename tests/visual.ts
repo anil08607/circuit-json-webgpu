@@ -6,6 +6,7 @@ import { chromium } from "playwright"
 import { PNG } from "pngjs"
 import pixelmatch from "pixelmatch"
 import { compose, scale, translate } from "transformation-matrix"
+import { pcbBends } from "../site/pcb-bend-fixture"
 
 const root = fileURLToPath(new URL("../", import.meta.url))
 const server = await createServer({
@@ -129,6 +130,88 @@ try {
     )
     assert.equal(pixel(fabrication[`${layer}-mirrored`], 40, 40)[3], 0)
   }
+  const bends = await page.evaluate(async (elements) => {
+    await window.gpuTest.renderFixture("pcb-bends-top")
+    const drawer = window.gpuTest.drawer
+    const canvas = document.querySelector("canvas")!
+    const capture = () => canvas.toDataURL("image/png").split(",")[1]
+    const top = capture()
+    const uploads = drawer.stats.geometryUploads
+    drawer.render({ selectedLayer: "bottom", hiddenLayerOpacity: 0 })
+    await drawer.flush()
+    const bottom = capture()
+    drawer.render({ showBendLines: false })
+    await drawer.flush()
+    const hidden = capture()
+    drawer.render({ showBendLines: true, layers: ["top"] })
+    await drawer.flush()
+    const filtered = capture()
+    drawer.render({ layers: undefined, showBendLines: true })
+    await drawer.flush()
+    const restored = capture()
+    const finalUploads = drawer.stats.geometryUploads
+    drawer.drawElements(elements, {
+      transform: { a: 14, b: 0, c: 0, d: -14, e: 400, f: 300 },
+      background: [0, 0, 0, 1],
+    })
+    await drawer.flush()
+    const defaultView = capture()
+    return {
+      top,
+      bottom,
+      hidden,
+      filtered,
+      restored,
+      defaultView,
+      uploads,
+      finalUploads,
+      diagnostics: drawer.diagnostics,
+    }
+  }, pcbBends)
+  assert.deepEqual(bends.diagnostics, [])
+  assert.equal(
+    bends.uploads,
+    bends.finalUploads,
+    "Bend visibility reuses retained geometry",
+  )
+  assert.equal(
+    bends.top,
+    bends.bottom,
+    "Bends are equally visible from both PCB sides",
+  )
+  assert.equal(bends.bottom, bends.restored, "Bend visibility can be restored")
+  assert.equal(
+    bends.hidden,
+    bends.defaultView,
+    "Bend lines are opt-in for each independent draw",
+  )
+  const yellow = (rgba: number[]) =>
+    rgba[0] > 180 && rgba[1] > 160 && rgba[2] < 130
+  assert(yellow(pixel(bends.top, 123, 215)), "Translated bend dash is visible")
+  assert(!yellow(pixel(bends.top, 133, 215)), "Bend dash gap stays empty")
+  assert(
+    !yellow(pixel(bends.top, 115, 215)),
+    "Bend does not extend beyond its endpoint",
+  )
+  assert(
+    !yellow(pixel(bends.hidden, 123, 215)),
+    "Bend toggle hides the annotation",
+  )
+  assert(
+    !yellow(pixel(bends.filtered, 123, 215)),
+    "Explicit layer filter excludes the overlay",
+  )
+  const bendImage = PNG.sync.read(Buffer.from(bends.top, "base64"))
+  let labelPixels = 0
+  for (let y = 199; y < 212; y++)
+    for (let x = 180; x < 285; x++) {
+      const i = (y * bendImage.width + x) * 4
+      // At 0.5 mm the glyph strokes are subpixel: check yellow ink, including
+      // antialiased edges, rather than requiring fully opaque text pixels.
+      const [r, g, b] = bendImage.data.subarray(i, i + 3)
+      if (r > 40 && g > r * 0.65 && b < r * 0.6) labelPixels++
+    }
+  assert(labelPixels > 20, "Bend label is visible above the centerline")
   const overlaps = await page.evaluate(() => {
     const frames: Record<string, string> = {}
     for (const layer of ["top", "bottom"] as const) {

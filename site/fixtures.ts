@@ -1,5 +1,6 @@
 import fabricationPathFill from "../tests/fixtures/fabrication-path-fill.circuit.json"
 import { teardropDemo } from "./teardrop-demo"
+import { pcbBends } from "./pcb-bend-fixture"
 import type { CircuitJson, RenderOptions } from "../lib"
 export type Fixture = { elements: CircuitJson; options?: RenderOptions }
 const board = {
@@ -356,6 +357,22 @@ export const keepouts = [
 ] as CircuitJson
 
 export const fixtures: Record<string, Fixture> = {
+  "pcb-bends-top": {
+    elements: pcbBends,
+    options: {
+      showBendLines: true,
+      selectedLayer: "top",
+      hiddenLayerOpacity: 0,
+    },
+  },
+  "pcb-bends-bottom": {
+    elements: pcbBends,
+    options: {
+      showBendLines: true,
+      selectedLayer: "bottom",
+      hiddenLayerOpacity: 0,
+    },
+  },
   "keepouts-top": {
     elements: keepouts,
     options: { selectedLayer: "top", hiddenLayerOpacity: 0 },
