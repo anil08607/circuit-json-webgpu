@@ -49,7 +49,7 @@
     "@types/earcut": "^3.0.0",
     "@types/pngjs": "^6.0.5",
     "@webgpu/types": "^0.1.64",
-    "circuit-json": "^0.0.518",
+    "circuit-json": "^0.0.522",
     "circuit-json-reference": "npm:circuit-json@0.0.501",
     "pixelmatch": "^7.1.0",
     "playwright": "1.63.0",
