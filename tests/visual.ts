@@ -4,6 +4,11 @@ import { fileURLToPath } from "node:url"
 import { createServer } from "vite"
 import { chromium } from "playwright"
 import { PNG } from "pngjs"
+import { Resvg } from "@resvg/resvg-js"
+import { createCanvas } from "@napi-rs/canvas"
+import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
+import { drawPcbCopperPour } from "circuit-to-canvas/lib/drawer/elements/pcb-copper-pour"
+import { DEFAULT_PCB_COLOR_MAP } from "circuit-to-canvas/lib/drawer/types"
 import pixelmatch from "pixelmatch"
 import { compose, scale, translate } from "transformation-matrix"
 
@@ -250,15 +255,67 @@ try {
   )
   const pourAlpha = (name: string, x: number) =>
     pixel(pours.frames[name], x, 110)[3]
-  for (const name of ["default", "aboveOne", "nan", "independent"]) {
-    assert.equal(pourAlpha(name, 50), 255)
-    assert.equal(pourAlpha(name, 110), 102)
-    assert.equal(pourAlpha(name, 170), 102)
-  }
-  for (const name of ["half", "retained", "shown"]) {
+  assert.equal(pourAlpha("aboveOne", 50), 255)
+  assert.equal(pourAlpha("aboveOne", 110), 102)
+  assert.equal(pourAlpha("aboveOne", 170), 102)
+  for (const name of [
+    "default",
+    "half",
+    "nan",
+    "retained",
+    "shown",
+    "independent",
+  ]) {
     assert(Math.abs(pourAlpha(name, 50) - 128) <= 1)
     assert(Math.abs(pourAlpha(name, 110) - 51) <= 1)
     assert(Math.abs(pourAlpha(name, 170) - 51) <= 1)
+  }
+  for (const background of ["black", "white"] as const) {
+    const referenceCanvas = createCanvas(200, 200)
+    const ctx = referenceCanvas.getContext("2d")
+    ctx.fillStyle = background
+    ctx.fillRect(0, 0, 200, 200)
+    for (const pour of pours.elements) {
+      if (pour.type !== "pcb_copper_pour") continue
+      drawPcbCopperPour({
+        ctx,
+        pour,
+        realToCanvasMat: { a: 10, b: 0, c: 0, d: -10, e: 100, f: 100 },
+        colorMap: DEFAULT_PCB_COLOR_MAP,
+      })
+    }
+    const canvasReference = referenceCanvas
+      .toBuffer("image/png")
+      .toString("base64")
+    for (const x of [50, 110, 170]) {
+      const actual = pixel(pours.frames[background], x, 110)
+      const expected = pixel(canvasReference, x, 110)
+      assert(
+        actual.every((channel, i) => Math.abs(channel - expected[i]) <= 1),
+        `Default pour color must match Canvas on ${background}: ${actual} vs ${expected}`,
+      )
+    }
+    const svg = convertCircuitJsonToPcbSvg([...pours.elements], {
+      width: 200,
+      height: 200,
+      viewport: { minX: -10, minY: -10, maxX: 10, maxY: 10 },
+      backgroundColor: background,
+      showSolderMask: false,
+      shouldDrawErrors: false,
+      shouldDrawRatsNest: false,
+      includeVersion: false,
+      drawPaddingOutsideBoard: false,
+    })
+    const reference = new Resvg(svg).render().asPng().toString("base64")
+    // SVG uses a different inner-layer palette; top and bottom match both references.
+    for (const x of [50, 110]) {
+      const actual = pixel(pours.frames[background], x, 110)
+      const expected = pixel(reference, x, 110)
+      assert(
+        actual.every((channel, i) => Math.abs(channel - expected[i]) <= 1),
+        `Default pour color must match SVG on ${background}: ${actual} vs ${expected}`,
+      )
+    }
   }
   for (const name of ["zero", "negative", "hidden", "xrayHidden"])
     for (const x of [50, 110, 170]) assert.equal(pourAlpha(name, x), 0)
@@ -577,9 +634,8 @@ try {
           : name === "keepouts-inner"
             ? layerColors.inner1
             : layerColors.bottom
-      assert.deepEqual(
-        at(260, 202),
-        copper.slice(0, 3),
+      assert(
+        at(260, 202).every((c, i) => Math.abs(c - copper[i] * 0.5) <= 0.5),
         "Hatching must stay inside the circular boundary",
       )
       assert.deepEqual(
@@ -625,7 +681,7 @@ try {
     if (name === "board-outline-cutout")
       assert.deepEqual(at(400, 300), [255, 38, 226])
     if (name === "pour-holes-and-arcs") {
-      assert(at(200, 300)[0] > 150)
+      assert(at(200, 300)[0] >= 100)
       assert(at(400, 280)[0] < 100)
     }
   }

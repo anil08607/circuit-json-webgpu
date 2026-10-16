@@ -304,7 +304,7 @@ export class CircuitToWebGpuDrawer {
         ? 0
         : Number.isFinite(o.copperPourOpacity)
           ? Math.max(0, Math.min(1, o.copperPourOpacity!))
-          : 1
+          : 0.5
     this.resize(width, height)
     this.device.queue.writeBuffer(
       this.uniform,
