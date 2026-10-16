@@ -17,6 +17,12 @@ jobs:
       - run: bun install
       - run: bun install
         working-directory: .parity-base
+      - name: Align base audit reference dependencies
+        working-directory: .parity-base
+        run: |
+          svg_reference_version=$(bun -p 'require("../node_modules/circuit-to-svg/package.json").version')
+          svg_schema_version=$(bun -p 'require("../node_modules/circuit-json/package.json").version')
+          bun add --dev --no-save "circuit-to-svg@$svg_reference_version" "circuit-json@$svg_schema_version"
       - run: bunx playwright install --with-deps chromium
       # The strict audit has known failures on main. Run both revisions on the
       # same runner; the required comparison below rejects every new regression.
