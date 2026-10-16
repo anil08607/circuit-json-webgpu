@@ -2998,12 +2998,12 @@
   "upstreamCommit": "fa8405c67634e287b79a1506eedde077ef6accb0",
   "testFiles": 116,
   "tests": 164,
-  "referencePassed": 152,
-  "referenceFailed": 12,
+  "referencePassed": 154,
+  "referenceFailed": 10,
   "capturedRenderCalls": 616,
   "renderCalls": 597,
-  "parityPassed": 197,
-  "parityFailed": 400,
+  "parityPassed": 284,
+  "parityFailed": 313,
   "testsWithoutCircuitDrawCalls": [
     {
       "name": "svg snapshot example",
@@ -3028,903 +3028,669 @@
     {
       "name": "TI BOOST-DRV8848 U1 VM pad - canvas vs SVG",
       "path": "tests/board-snapshot/ti-boost-drv8848-u1-vm-pad.test.ts",
-      "status": "failed",
-      "error": "Error: expect(received).toMatchPngSnapshot(testPathOriginal, pngName)\n\nPNG snapshot differs by 14.556% (threshold: 5%). Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/board-snapshot/__snapshots__/ti-boost-drv8848-u1-vm-pad.diff.png. Use BUN_UPDATE_SNAPSHOTS=1 to update the snapshot.",
-      "caseIds": [
-        "case-0000"
-      ]
+      "status": "passed",
+      "caseIds": ["case-0000"]
     },
     {
       "name": "renders abse/gameboy top-layer copper pours and traces",
       "path": "tests/board-snapshot/abse-gameboy-copper-pour.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0001"
-      ]
+      "caseIds": ["case-0001"]
     },
     {
       "name": "renders abse/gameboy bottom-layer copper pours and traces",
       "path": "tests/board-snapshot/abse-gameboy-copper-pour.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0002"
-      ]
+      "caseIds": ["case-0002"]
     },
     {
       "name": "clips a trace-only Game Boy render using full-circuit context",
       "path": "tests/board-snapshot/abse-gameboy-copper-pour.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0003"
-      ]
+      "caseIds": ["case-0003"]
     },
     {
       "name": "USB-C flashlight - comprehensive comparison (circuit-to-canvas vs circuit-to-svg)",
       "path": "tests/board-snapshot/usb-c-flashlight-board.test.ts",
       "status": "failed",
       "error": "Error: expect(received).toMatchPngSnapshot(testPathOriginal, pngName)\n\nPNG snapshot differs by 16.689% (threshold: 5%). Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/board-snapshot/__snapshots__/usb-c-flashlight-board.diff.png. Use BUN_UPDATE_SNAPSHOTS=1 to update the snapshot.",
-      "caseIds": [
-        "case-0004"
-      ]
+      "caseIds": ["case-0004"]
     },
     {
       "name": "drawDimensionLine shape",
       "path": "tests/shapes/dimension-line.test.ts",
       "status": "failed",
       "error": "Error: expect(received).toMatchPngSnapshot(testPathOriginal, pngName)\n\nPNG snapshot differs by 14.110% (threshold: 5%). Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/shapes/__snapshots__/dimension-line.diff.png. Use BUN_UPDATE_SNAPSHOTS=1 to update the snapshot.",
-      "caseIds": [
-        "case-0005",
-        "case-0006"
-      ]
+      "caseIds": ["case-0005", "case-0006"]
     },
     {
       "name": "draw oval",
       "path": "tests/shapes/oval.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0007"
-      ]
+      "caseIds": ["case-0007"]
     },
     {
       "name": "draw horizontal pill",
       "path": "tests/shapes/pill.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0008"
-      ]
+      "caseIds": ["case-0008"]
     },
     {
       "name": "draw vertical pill",
       "path": "tests/shapes/pill.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0009"
-      ]
+      "caseIds": ["case-0009"]
     },
     {
       "name": "draw rect",
       "path": "tests/shapes/rect.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0010"
-      ]
+      "caseIds": ["case-0010"]
     },
     {
       "name": "draw rect with border radius",
       "path": "tests/shapes/rect.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0011"
-      ]
+      "caseIds": ["case-0011"]
     },
     {
       "name": "draw circle",
       "path": "tests/shapes/circle.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0012"
-      ]
+      "caseIds": ["case-0012"]
     },
     {
       "name": "draw circular hole",
       "path": "tests/elements/pcb-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0013"
-      ]
+      "caseIds": ["case-0013"]
     },
     {
       "name": "draw square hole",
       "path": "tests/elements/pcb-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0014"
-      ]
+      "caseIds": ["case-0014"]
     },
     {
       "name": "draw oval hole",
       "path": "tests/elements/pcb-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0015"
-      ]
+      "caseIds": ["case-0015"]
     },
     {
       "name": "draw pill hole",
       "path": "tests/elements/pcb-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0016"
-      ]
+      "caseIds": ["case-0016"]
     },
     {
       "name": "draw rotated oval hole",
       "path": "tests/elements/pcb-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0017"
-      ]
+      "caseIds": ["case-0017"]
     },
     {
       "name": "draw rotated rect hole",
       "path": "tests/elements/pcb-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0018"
-      ]
+      "caseIds": ["case-0018"]
     },
     {
       "name": "draw rotated square hole",
       "path": "tests/elements/pcb-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0019"
-      ]
+      "caseIds": ["case-0019"]
     },
     {
       "name": "draw rotated pill hole",
       "path": "tests/elements/pcb-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0020"
-      ]
+      "caseIds": ["case-0020"]
     },
     {
       "name": "draw plated holes with positive and negative soldermask margins",
       "path": "tests/elements/pcb-plated-hole-soldermask-margin.test.ts",
       "status": "failed",
       "error": "Error: expect(received).toMatchPngSnapshot(testPathOriginal, pngName)\n\nPNG snapshot differs by 47.881% (threshold: 5%). Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/elements/__snapshots__/pcb-plated-hole-soldermask-margin.diff.png. Use BUN_UPDATE_SNAPSHOTS=1 to update the snapshot.",
-      "caseIds": [
-        "case-0021"
-      ]
+      "caseIds": ["case-0021"]
     },
     {
       "name": "draw circular hole with rotated rect pad",
       "path": "tests/elements/pcb-plated-hole-rotated-rect-pad.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0022"
-      ]
+      "caseIds": ["case-0022"]
     },
     {
       "name": "clearDrillHoles removes physical apertures and preserves copper rings",
       "path": "tests/elements/clear-drill-holes.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0023"
-      ]
+      "caseIds": ["case-0023"]
     },
     {
       "name": "drills retain their configured color by default",
       "path": "tests/elements/clear-drill-holes.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0024"
-      ]
+      "caseIds": ["case-0024"]
     },
     {
       "name": "comprehensive soldermask margin test",
       "path": "tests/elements/pcb-no-soldermask.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0025"
-      ]
+      "caseIds": ["case-0025"]
     },
     {
       "name": "draw pcb note text with small font size",
       "path": "tests/elements/pcb-note-text-small.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0026"
-      ]
+      "caseIds": ["case-0026"]
     },
     {
       "name": "draw simple trace",
       "path": "tests/elements/pcb-trace.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0027"
-      ]
+      "caseIds": ["case-0027"]
     },
     {
       "name": "draw multi-segment trace",
       "path": "tests/elements/pcb-trace.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0028"
-      ]
+      "caseIds": ["case-0028"]
     },
     {
       "name": "draw trace on bottom layer",
       "path": "tests/elements/pcb-trace.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0029"
-      ]
+      "caseIds": ["case-0029"]
     },
     {
       "name": "draw multiple traces",
       "path": "tests/elements/pcb-trace.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0030"
-      ]
+      "caseIds": ["case-0030"]
     },
     {
       "name": "draw polygon smt pad",
       "path": "tests/elements/pcb-smtpad-polygon.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0031"
-      ]
+      "caseIds": ["case-0031"]
     },
     {
       "name": "draw smt pads with positive and negative soldermask margins",
       "path": "tests/elements/pcb-smtpad-soldermask-margin.test.ts",
       "status": "failed",
       "error": "Error: expect(received).toMatchPngSnapshot(testPathOriginal, pngName)\n\nPNG snapshot differs by 39.163% (threshold: 5%). Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/elements/__snapshots__/pcb-smtpad-soldermask-margin.diff.png. Use BUN_UPDATE_SNAPSHOTS=1 to update the snapshot.",
-      "caseIds": [
-        "case-0032"
-      ]
+      "caseIds": ["case-0032"]
     },
     {
       "name": "draw pill smt pad",
       "path": "tests/elements/pcb-smtpad-pill.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0033"
-      ]
+      "caseIds": ["case-0033"]
     },
     {
       "name": "draw copper text",
       "path": "tests/elements/pcb-copper-text.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0034"
-      ]
+      "caseIds": ["case-0034"]
     },
     {
       "name": "draw bottom copper text auto-mirrored when is_mirrored is omitted",
       "path": "tests/elements/pcb-copper-text.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0035"
-      ]
+      "caseIds": ["case-0035"]
     },
     {
       "name": "draw copper text knockout mirrored with padding",
       "path": "tests/elements/pcb-copper-text.test.ts",
       "status": "failed",
       "error": "Error: expect(received).toMatchPngSnapshot(testPathOriginal, pngName)\n\nPNG snapshot differs by 9.713% (threshold: 5%). Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/elements/__snapshots__/pcb-copper-text-knockout.diff.png. Use BUN_UPDATE_SNAPSHOTS=1 to update the snapshot.",
-      "caseIds": [
-        "case-0036"
-      ]
+      "caseIds": ["case-0036"]
     },
     {
       "name": "draw multiline copper text with left alignment",
       "path": "tests/elements/pcb-copper-text-multiline-left.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0037"
-      ]
+      "caseIds": ["case-0037"]
     },
     {
       "name": "draw circular smt pad",
       "path": "tests/elements/pcb-smtpad-circle.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0038"
-      ]
+      "caseIds": ["case-0038"]
     },
     {
       "name": "hide inner1 trace covered by its copper pour",
       "path": "tests/elements/pcb-copper-pour-inner-layers.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0039",
-        "case-0040"
-      ]
+      "caseIds": ["case-0039", "case-0040"]
     },
     {
       "name": "hide inner2 trace covered by its copper pour",
       "path": "tests/elements/pcb-copper-pour-inner-layers.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0041",
-        "case-0042"
-      ]
+      "caseIds": ["case-0041", "case-0042"]
     },
     {
       "name": "hide inner3 trace covered by its copper pour",
       "path": "tests/elements/pcb-copper-pour-inner-layers.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0043",
-        "case-0044"
-      ]
+      "caseIds": ["case-0043", "case-0044"]
     },
     {
       "name": "hide inner4 trace covered by its copper pour",
       "path": "tests/elements/pcb-copper-pour-inner-layers.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0045",
-        "case-0046"
-      ]
+      "caseIds": ["case-0045", "case-0046"]
     },
     {
       "name": "hide inner5 trace covered by its copper pour",
       "path": "tests/elements/pcb-copper-pour-inner-layers.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0047",
-        "case-0048"
-      ]
+      "caseIds": ["case-0047", "case-0048"]
     },
     {
       "name": "hide inner6 trace covered by its copper pour",
       "path": "tests/elements/pcb-copper-pour-inner-layers.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0049",
-        "case-0050"
-      ]
+      "caseIds": ["case-0049", "case-0050"]
     },
     {
       "name": "hide inner7 trace covered by its copper pour",
       "path": "tests/elements/pcb-copper-pour-inner-layers.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0051",
-        "case-0052"
-      ]
+      "caseIds": ["case-0051", "case-0052"]
     },
     {
       "name": "hide inner8 trace covered by its copper pour",
       "path": "tests/elements/pcb-copper-pour-inner-layers.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0053",
-        "case-0054"
-      ]
+      "caseIds": ["case-0053", "case-0054"]
     },
     {
       "name": "draw variable-width trace with port hints",
       "path": "tests/elements/pcb-trace-hints.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0055"
-      ]
+      "caseIds": ["case-0055"]
     },
     {
       "name": "draw pcb note text with custom color",
       "path": "tests/elements/pcb-note-text-custom-color.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0056"
-      ]
+      "caseIds": ["case-0056"]
     },
     {
       "name": "draw silkscreen text knockout",
       "path": "tests/elements/pcb-silkscreen-text-knockout.test.ts",
       "status": "failed",
       "error": "Error: expect(received).toMatchPngSnapshot(testPathOriginal, pngName)\n\nPNG snapshot differs by 24.544% (threshold: 5%). Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/elements/__snapshots__/pcb-silkscreen-text-knockout.diff.png. Use BUN_UPDATE_SNAPSHOTS=1 to update the snapshot.",
-      "caseIds": [
-        "case-0057"
-      ]
+      "caseIds": ["case-0057"]
     },
     {
       "name": "draw circular hole with rotated rect pad when soldermask is true",
       "path": "tests/elements/pcb-plated-hole-rotated-rect-pad-soldermask.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0058"
-      ]
+      "caseIds": ["case-0058"]
     },
     {
       "name": "draw silkscreen text bottom layer with rotation - tests transform order",
       "path": "tests/elements/pcb-silkscreen-text-bottom-rotated.test.ts",
       "status": "failed",
       "error": "Error: expect(received).toMatchPngSnapshot(testPathOriginal, pngName)\n\nPNG snapshot differs by 10.880% (threshold: 5%). Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/elements/__snapshots__/pcb-silkscreen-text-bottom-rotated.diff.png. Use BUN_UPDATE_SNAPSHOTS=1 to update the snapshot.",
-      "caseIds": [
-        "case-0059"
-      ]
+      "caseIds": ["case-0059"]
     },
     {
       "name": "draw silkscreen line",
       "path": "tests/elements/pcb-silkscreen-line.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0060"
-      ]
+      "caseIds": ["case-0060"]
     },
     {
       "name": "cutout removes overlapping SMT pad copper",
       "path": "tests/elements/pcb-smtpad-cutout.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0061"
-      ]
+      "caseIds": ["case-0061"]
     },
     {
       "name": "draw fabrication note rect with all features",
       "path": "tests/elements/pcb-fabrication-note-rect-all-features.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0062"
-      ]
+      "caseIds": ["case-0062"]
     },
     {
       "name": "draw buried via only on layers in its span",
       "path": "tests/elements/pcb-via-inner-layer.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0063",
-        "case-0064",
-        "case-0065"
-      ]
+      "caseIds": ["case-0063", "case-0064", "case-0065"]
     },
     {
       "name": "draw pcb note text with different anchor alignments",
       "path": "tests/elements/pcb-note-text-anchor-alignment.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0066"
-      ]
+      "caseIds": ["case-0066"]
     },
     {
       "name": "draw fabrication note rect with corner radius",
       "path": "tests/elements/pcb-fabrication-note-rect-corner-radius.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0067"
-      ]
+      "caseIds": ["case-0067"]
     },
     {
       "name": "draw pcb note line with custom color",
       "path": "tests/elements/pcb-note-line-custom-color.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0068"
-      ]
+      "caseIds": ["case-0068"]
     },
     {
       "name": "pcb_note elements are rendered by default (showPcbNotes defaults to true)",
       "path": "tests/elements/show-pcb-notes-toggle.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0069"
-      ]
+      "caseIds": ["case-0069"]
     },
     {
       "name": "pcb_note elements are hidden when showPcbNotes is false",
       "path": "tests/elements/show-pcb-notes-toggle.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0070"
-      ]
+      "caseIds": ["case-0070"]
     },
     {
       "name": "draw pcb note dimension - with offset",
       "path": "tests/elements/pcb-note-dimension-with-offset.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0071"
-      ]
+      "caseIds": ["case-0071"]
     },
     {
       "name": "draw courtyard rect",
       "path": "tests/elements/pcb-courtyard-rect.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0072"
-      ]
+      "caseIds": ["case-0072"]
     },
     {
       "name": "draw silkscreen rect",
       "path": "tests/elements/pcb-silkscreen-rect.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0073"
-      ]
+      "caseIds": ["case-0073"]
     },
     {
       "name": "draw pcb note rect with dashed stroke and no fill",
       "path": "tests/elements/pcb-note-rect-dashed-stroke.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0074"
-      ]
+      "caseIds": ["case-0074"]
     },
     {
       "name": "draw rectangular cutout",
       "path": "tests/elements/pcb-cutout.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0075"
-      ]
+      "caseIds": ["case-0075"]
     },
     {
       "name": "draw rectangular cutout with corner radius",
       "path": "tests/elements/pcb-cutout.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0076"
-      ]
+      "caseIds": ["case-0076"]
     },
     {
       "name": "draw circular cutout",
       "path": "tests/elements/pcb-cutout.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0077"
-      ]
+      "caseIds": ["case-0077"]
     },
     {
       "name": "draw polygon cutout",
       "path": "tests/elements/pcb-cutout.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0078"
-      ]
+      "caseIds": ["case-0078"]
     },
     {
       "name": "draw rectangular copper pour",
       "path": "tests/elements/pcb-copper-pour.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0079"
-      ]
+      "caseIds": ["case-0079"]
     },
     {
       "name": "draw polygon copper pour",
       "path": "tests/elements/pcb-copper-pour.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0080"
-      ]
+      "caseIds": ["case-0080"]
     },
     {
       "name": "draw copper pour with trace",
       "path": "tests/elements/pcb-copper-pour.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0081"
-      ]
+      "caseIds": ["case-0081"]
     },
     {
       "name": "draw brep copper pours",
       "path": "tests/elements/pcb-copper-pour.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0082"
-      ]
+      "caseIds": ["case-0082"]
     },
     {
       "name": "draw bottom pcb note text auto-mirrored when is_mirrored is omitted",
       "path": "tests/elements/pcb-note-text-bottom-auto-mirror.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0083"
-      ]
+      "caseIds": ["case-0083"]
     },
     {
       "name": "draw silkscreen text",
       "path": "tests/elements/pcb-silkscreen-text.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0084"
-      ]
+      "caseIds": ["case-0084"]
     },
     {
       "name": "draw pcb note dimension - basic",
       "path": "tests/elements/pcb-note-dimension-basic.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0085"
-      ]
+      "caseIds": ["case-0085"]
     },
     {
       "name": "render bottom soldermask layer with openings",
       "path": "tests/elements/pcb-bottom-soldermask-only.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0086"
-      ]
+      "caseIds": ["case-0086"]
     },
     {
       "name": "draw rectangular smt pad with border radius",
       "path": "tests/elements/pcb-smtpad-rect-border-radius.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0087"
-      ]
+      "caseIds": ["case-0087"]
     },
     {
       "name": "draw lowercase text with descenders",
       "path": "tests/elements/pcb-fabrication-note-text-descenders.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0088"
-      ]
+      "caseIds": ["case-0088"]
     },
     {
       "name": "draw via on bottom layer uses bottom copper color",
       "path": "tests/elements/pcb-via-bottom-layer.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0089"
-      ]
+      "caseIds": ["case-0089"]
     },
     {
       "name": "draw silkscreen oval",
       "path": "tests/elements/pcb-silkscreen-oval.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0090"
-      ]
+      "caseIds": ["case-0090"]
     },
     {
       "name": "draw silkscreen pill",
       "path": "tests/elements/pcb-silkscreen-pill.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0091"
-      ]
+      "caseIds": ["case-0091"]
     },
     {
       "name": "draw silkscreen pill bottom layer",
       "path": "tests/elements/pcb-silkscreen-pill.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0092"
-      ]
+      "caseIds": ["case-0092"]
     },
     {
       "name": "pcb keepout multiple layers",
       "path": "tests/elements/pcb-keepout-multiple-layers.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0093"
-      ]
+      "caseIds": ["case-0093"]
     },
     {
       "name": "pcb keepout rect and circle",
       "path": "tests/elements/pcb-keepout-rect-and-circle.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0094"
-      ]
+      "caseIds": ["case-0094"]
     },
     {
       "name": "draw plated hole on bottom layer uses bottom copper color",
       "path": "tests/elements/pcb-plated-hole-bottom-layer.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0095"
-      ]
+      "caseIds": ["case-0095"]
     },
     {
       "name": "draw courtyard circle",
       "path": "tests/elements/pcb-courtyard-circle.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0096"
-      ]
+      "caseIds": ["case-0096"]
     },
     {
       "name": "draw fabrication note text small size",
       "path": "tests/elements/pcb-fabrication-note-text-small.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0097"
-      ]
+      "caseIds": ["case-0097"]
     },
     {
       "name": "draw silkscreen text bottom layer",
       "path": "tests/elements/pcb-silkscreen-text-bottom.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0098"
-      ]
+      "caseIds": ["case-0098"]
     },
     {
       "name": "draw via",
       "path": "tests/elements/pcb-via.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0099"
-      ]
+      "caseIds": ["case-0099"]
     },
     {
       "name": "draw multiple vias",
       "path": "tests/elements/pcb-via.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0100"
-      ]
+      "caseIds": ["case-0100"]
     },
     {
       "name": "drawPcbPanel with board and components",
       "path": "tests/elements/draw-pcb-panel.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0101"
-      ]
+      "caseIds": ["case-0101"]
     },
     {
       "name": "panel vias inherit their own board defaults and preserve explicit overrides",
       "path": "tests/elements/pcb-via-board-tenting.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0102",
-        "case-0103"
-      ]
+      "caseIds": ["case-0102", "case-0103"]
     },
     {
       "name": "comprehensive soldermask margin test",
       "path": "tests/elements/pcb-comprehensive-soldermask-margin.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0104"
-      ]
+      "caseIds": ["case-0104"]
     },
     {
       "name": "renders copper pour where same-net trace is fully covered",
       "path": "tests/elements/copper-pour-same-net-trace-fully-covered.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0105",
-        "case-0106"
-      ]
+      "caseIds": ["case-0105", "case-0106"]
     },
     {
       "name": "draw fabrication note path",
       "path": "tests/elements/pcb-fabrication-note-path.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0107"
-      ]
+      "caseIds": ["case-0107"]
     },
     {
       "name": "draw pcb note path",
       "path": "tests/elements/pcb-note-path.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0108"
-      ]
+      "caseIds": ["case-0108"]
     },
     {
       "name": "draw pcb note line with all features",
       "path": "tests/elements/pcb-note-line-all-features.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0109"
-      ]
+      "caseIds": ["case-0109"]
     },
     {
       "name": "draw copper knockout text with different anchor alignments",
       "path": "tests/elements/pcb-copper-text-knockout-anchor-alignment.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0110"
-      ]
+      "caseIds": ["case-0110"]
     },
     {
       "name": "render top copper pour with soldermask-over-copper color",
       "path": "tests/elements/pcb-copper-pour-soldermask.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0111"
-      ]
+      "caseIds": ["case-0111"]
     },
     {
       "name": "render bottom copper pour with soldermask-over-copper color",
       "path": "tests/elements/pcb-copper-pour-soldermask.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0112"
-      ]
+      "caseIds": ["case-0112"]
     },
     {
       "name": "draw silkscreen text with rotation",
       "path": "tests/elements/pcb-silkscreen-text-rotated.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0113"
-      ]
+      "caseIds": ["case-0113"]
     },
     {
       "name": "draw silkscreen mixed-case alphabet pairs",
       "path": "tests/elements/pcb-silkscreen-text-mixed-case-alphabet.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0114"
-      ]
+      "caseIds": ["case-0114"]
     },
     {
       "name": "draw pcb note rect with all features",
       "path": "tests/elements/pcb-note-rect-all-features.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0115"
-      ]
+      "caseIds": ["case-0115"]
     },
     {
       "name": "draw bottom layer smt pad",
       "path": "tests/elements/pcb-smtpad-bottom-layer.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0116"
-      ]
+      "caseIds": ["case-0116"]
     },
     {
       "name": "draw fabrication note path with thick stroke",
       "path": "tests/elements/pcb-fabrication-note-path-thick-stroke.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0117"
-      ]
+      "caseIds": ["case-0117"]
     },
     {
       "name": "draw courtyard outline",
       "path": "tests/elements/pcb-courtyard-outline.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0118"
-      ]
+      "caseIds": ["case-0118"]
     },
     {
       "name": "draw pcb note dimension - vertical with rotation",
       "path": "tests/elements/pcb-note-dimension-vertical.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0119"
-      ]
+      "caseIds": ["case-0119"]
     },
     {
       "name": "draw fabrication note text with rgba color",
       "path": "tests/elements/pcb-fabrication-note-text-rgba-color.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0120"
-      ]
+      "caseIds": ["case-0120"]
     },
     {
       "name": "draw fabrication note rect with dashed stroke",
       "path": "tests/elements/pcb-fabrication-note-rect-dashed.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0121"
-      ]
+      "caseIds": ["case-0121"]
     },
     {
       "name": "draw fabrication note rect with default color",
       "path": "tests/elements/pcb-fabrication-note-rect-default-color.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0122"
-      ]
+      "caseIds": ["case-0122"]
     },
     {
       "name": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
@@ -4370,373 +4136,273 @@
       "name": "draw fabrication note path with custom color",
       "path": "tests/elements/pcb-fabrication-note-path-custom-color.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0555"
-      ]
+      "caseIds": ["case-0555"]
     },
     {
       "name": "soldermask over covered copper pour cuts openings without rendering other components",
       "path": "tests/elements/pcb-copper-pour-soldermask-cutouts-only.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0556"
-      ]
+      "caseIds": ["case-0556"]
     },
     {
       "name": "clips a trace exactly where it enters a rectangular copper pour",
       "path": "tests/elements/copper-pour-trace-clipping.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0557",
-        "case-0558"
-      ]
+      "caseIds": ["case-0557", "case-0558"]
     },
     {
       "name": "preserves a trace inside a BRep copper-pour clearance ring",
       "path": "tests/elements/copper-pour-trace-clipping.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0559",
-        "case-0560"
-      ]
+      "caseIds": ["case-0559", "case-0560"]
     },
     {
       "name": "a top blind via does not suppress a bottom route via at the same position",
       "path": "tests/elements/pcb-trace-via-distinct-layers.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0561"
-      ]
+      "caseIds": ["case-0561"]
     },
     {
       "name": "draw multiline silkscreen text",
       "path": "tests/elements/pcb-silkscreen-text-multiline.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0562"
-      ]
+      "caseIds": ["case-0562"]
     },
     {
       "name": "draw pcb note rect with fill and no stroke",
       "path": "tests/elements/pcb-note-rect-filled-no-stroke.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0563"
-      ]
+      "caseIds": ["case-0563"]
     },
     {
       "name": "draw pcb note line with dashed stroke",
       "path": "tests/elements/pcb-note-line-dashed.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0564"
-      ]
+      "caseIds": ["case-0564"]
     },
     {
       "name": "draw pcb fabrication note dimension - basic",
       "path": "tests/elements/pcb-fabrication-note-dimension.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0565"
-      ]
+      "caseIds": ["case-0565"]
     },
     {
       "name": "pcb keepout with pcb_group_id and subcircuit_id",
       "path": "tests/elements/pcb-keepout-with-group-id.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0566"
-      ]
+      "caseIds": ["case-0566"]
     },
     {
       "name": "route via tenting works without a board and only with soldermask enabled",
       "path": "tests/elements/pcb-trace-via-tenting-without-board.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0567",
-        "case-0568",
-        "case-0569"
-      ]
+      "caseIds": ["case-0567", "case-0568", "case-0569"]
     },
     {
       "name": "draw smt pads fully covered with soldermask and board with soldermask",
       "path": "tests/elements/pcb-smtpad-soldermask-coverage.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0570"
-      ]
+      "caseIds": ["case-0570"]
     },
     {
       "name": "draw silkscreen path",
       "path": "tests/elements/pcb-silkscreen-path.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0571"
-      ]
+      "caseIds": ["case-0571"]
     },
     {
       "name": "layer filter only draws elements on specified layers",
       "path": "tests/elements/layer-filter.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0572"
-      ]
+      "caseIds": ["case-0572"]
     },
     {
       "name": "solder paste is hidden by default and filtered by selected layer",
       "path": "tests/elements/pcb-solder-paste.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0573",
-        "case-0574",
-        "case-0575"
-      ]
+      "caseIds": ["case-0573", "case-0574", "case-0575"]
     },
     {
       "name": "draws every supported solder paste shape using circuit-to-svg color",
       "path": "tests/elements/pcb-solder-paste.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0576"
-      ]
+      "caseIds": ["case-0576"]
     },
     {
       "name": "draws solder paste apertures over SMT pads",
       "path": "tests/elements/pcb-solder-paste.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0577"
-      ]
+      "caseIds": ["case-0577"]
     },
     {
       "name": "draw silkscreen circle",
       "path": "tests/elements/pcb-silkscreen-circle.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0578"
-      ]
+      "caseIds": ["case-0578"]
     },
     {
       "name": "draw rectangular board",
       "path": "tests/elements/pcb-board.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0579"
-      ]
+      "caseIds": ["case-0579"]
     },
     {
       "name": "draw board with custom outline",
       "path": "tests/elements/pcb-board.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0580"
-      ]
+      "caseIds": ["case-0580"]
     },
     {
       "name": "draw board with elements",
       "path": "tests/elements/pcb-board.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0581"
-      ]
+      "caseIds": ["case-0581"]
     },
     {
       "name": "draw pcb note dimension - angled",
       "path": "tests/elements/pcb-note-dimension-angled-and-vertical.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0582"
-      ]
+      "caseIds": ["case-0582"]
     },
     {
       "name": "draw multiline copper text with right alignment",
       "path": "tests/elements/pcb-copper-text-multiline-right.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0583"
-      ]
+      "caseIds": ["case-0583"]
     },
     {
       "name": "draw multiline copper text with center alignment",
       "path": "tests/elements/pcb-copper-text-multiline.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0584"
-      ]
+      "caseIds": ["case-0584"]
     },
     {
       "name": "draw smt pads with asymmetric soldermask margins",
       "path": "tests/elements/pcb-smtpad-asymmetric-soldermask-margin.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0585"
-      ]
+      "caseIds": ["case-0585"]
     },
     {
       "name": "draw circular plated hole",
       "path": "tests/elements/pcb-plated-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0586"
-      ]
+      "caseIds": ["case-0586"]
     },
     {
       "name": "draw oval plated hole",
       "path": "tests/elements/pcb-plated-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0587"
-      ]
+      "caseIds": ["case-0587"]
     },
     {
       "name": "draw pill plated hole",
       "path": "tests/elements/pcb-plated-hole.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0588"
-      ]
+      "caseIds": ["case-0588"]
     },
     {
       "name": "cut copper trace at via destination drill",
       "path": "tests/elements/pcb-trace-destination-drill-cutout.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0589"
-      ]
+      "caseIds": ["case-0589"]
     },
     {
       "name": "cut soldermask trace at plated-hole destination drill",
       "path": "tests/elements/pcb-trace-destination-drill-cutout.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0590"
-      ]
+      "caseIds": ["case-0590"]
     },
     {
       "name": "draw silkscreen on component",
       "path": "tests/elements/pcb-silkscreen-on-component.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0591"
-      ]
+      "caseIds": ["case-0591"]
     },
     {
       "name": "draw rotated rectangular smt pad",
       "path": "tests/elements/pcb-smtpad-rotated-rect.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0592"
-      ]
+      "caseIds": ["case-0592"]
     },
     {
       "name": "repeated board context preserves the rendered board's tenting defaults",
       "path": "tests/elements/pcb-via-tenting-with-clip-context.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0593",
-        "case-0594"
-      ]
+      "caseIds": ["case-0593", "case-0594"]
     },
     {
       "name": "draw silkscreen text with different anchor alignments on top and bottom layers",
       "path": "tests/elements/pcb-silkscreen-text-anchor-alignment.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0595"
-      ]
+      "caseIds": ["case-0595"]
     },
     {
       "name": "PCB debug objects are opt-in",
       "path": "tests/elements/pcb-debug-object.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0596"
-      ]
+      "caseIds": ["case-0596"]
     },
     {
       "name": "draws labeled PCB debug objects",
       "path": "tests/elements/pcb-debug-object.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0597"
-      ]
+      "caseIds": ["case-0597"]
     },
     {
       "name": "matches the labeled PCB debug object visual snapshot",
       "path": "tests/elements/pcb-debug-object.test.ts",
       "status": "failed",
       "error": "Error: expect(received).toMatchSvgSnapshot(testPathOriginal, svgName)\n\nSnapshot does not match. Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/elements/__snapshots__/pcb-debug-object.diff.png",
-      "caseIds": [
-        "case-0598"
-      ]
+      "caseIds": ["case-0598"]
     },
     {
       "name": "places rectangle labels above the top-left corner",
       "path": "tests/elements/pcb-debug-object.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0599"
-      ]
+      "caseIds": ["case-0599"]
     },
     {
       "name": "stacks labels for overlapping rectangles",
       "path": "tests/elements/pcb-debug-object.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0600"
-      ]
+      "caseIds": ["case-0600"]
     },
     {
       "name": "pcb keepout with layer filter",
       "path": "tests/elements/pcb-keepout-layer-filter.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0601"
-      ]
+      "caseIds": ["case-0601"]
     },
     {
       "name": "draw fabrication note rect with custom color",
       "path": "tests/elements/pcb-fabrication-note-rect-custom-color.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0602"
-      ]
+      "caseIds": ["case-0602"]
     },
     {
       "name": "draw full character set",
       "path": "tests/elements/pcb-fabrication-note-text-full-charset.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0603",
-        "case-0604",
-        "case-0605",
-        "case-0606"
-      ]
+      "caseIds": ["case-0603", "case-0604", "case-0605", "case-0606"]
     },
     {
       "name": "renders copper pour with same-net trace",
       "path": "tests/elements/copper-pour-same-net.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0607"
-      ]
+      "caseIds": ["case-0607"]
     },
     {
       "name": "draw holes with positive and negative soldermask margins",
       "path": "tests/elements/pcb-hole-soldermask-margin.test.ts",
       "status": "failed",
       "error": "Error: expect(received).toMatchPngSnapshot(testPathOriginal, pngName)\n\nPNG snapshot differs by 36.402% (threshold: 5%). Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/elements/__snapshots__/pcb-hole-soldermask-margin.diff.png. Use BUN_UPDATE_SNAPSHOTS=1 to update the snapshot.",
-      "caseIds": [
-        "case-0608"
-      ]
+      "caseIds": ["case-0608"]
     },
     {
       "name": "renders copper pour with different-net traces",
       "path": "tests/elements/copper-pour-different-net.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0609"
-      ]
+      "caseIds": ["case-0609"]
     },
     {
       "name": "board ownership is precomputed from IDs regardless of positions or element order",
@@ -4748,50 +4414,37 @@
       "name": "draw hole with polygon pad - circle hole",
       "path": "tests/elements/pcb-plated-hole-polygon.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0610"
-      ]
+      "caseIds": ["case-0610"]
     },
     {
       "name": "draw hole with polygon pad - pill hole with offset",
       "path": "tests/elements/pcb-plated-hole-polygon.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0611"
-      ]
+      "caseIds": ["case-0611"]
     },
     {
       "name": "draw hole with polygon pad - pill hole",
       "path": "tests/elements/pcb-plated-hole-polygon.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0612"
-      ]
+      "caseIds": ["case-0612"]
     },
     {
       "name": "draw an explicitly interpolated trace necking into pads",
       "path": "tests/elements/pcb-trace-necking.test.ts",
-      "status": "failed",
-      "error": "Error: expect(received).toMatchPngSnapshot(testPathOriginal, pngName)\n\nPNG snapshot differs by 10.353% (threshold: 5%). Diff saved at /home/runner/work/circuit-json-webgpu/circuit-json-webgpu/tests/upstream/circuit-to-canvas/tests/elements/__snapshots__/pcb-trace-necking.diff.png. Use BUN_UPDATE_SNAPSHOTS=1 to update the snapshot.",
-      "caseIds": [
-        "case-0613"
-      ]
+      "status": "passed",
+      "caseIds": ["case-0613"]
     },
     {
       "name": "draw pcb silkscreen graphic",
       "path": "tests/elements/pcb-silkscreen-graphic.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0614"
-      ]
+      "caseIds": ["case-0614"]
     },
     {
       "name": "draw rectangular smt pad",
       "path": "tests/elements/pcb-smtpad-rect.test.ts",
       "status": "passed",
-      "caseIds": [
-        "case-0615"
-      ]
+      "caseIds": ["case-0615"]
     }
   ],
   "results": [
@@ -4808,8 +4461,8 @@
         "maxY": -9.45
       },
       "layer": "all",
-      "changedPixels": 63675,
-      "rawChangedPixels": 63675,
+      "changedPixels": 1308,
+      "rawChangedPixels": 1308,
       "inkPixels": 225774,
       "allowance": 512,
       "diagnostics": []
@@ -4827,8 +4480,8 @@
         "maxY": 65.03067484662577
       },
       "layer": "top",
-      "changedPixels": 462852,
-      "rawChangedPixels": 462852,
+      "changedPixels": 6425,
+      "rawChangedPixels": 16848,
       "inkPixels": 502401,
       "allowance": 1044,
       "diagnostics": []
@@ -4846,8 +4499,8 @@
         "maxY": 65.03067484662577
       },
       "layer": "bottom",
-      "changedPixels": 482064,
-      "rawChangedPixels": 482064,
+      "changedPixels": 14317,
+      "rawChangedPixels": 19651,
       "inkPixels": 504350,
       "allowance": 1044,
       "diagnostics": []
@@ -5488,7 +5141,7 @@
         "maxY": 100
       },
       "layer": "inner2",
-      "changedPixels": 6288,
+      "changedPixels": 5940,
       "rawChangedPixels": 6288,
       "inkPixels": 6400,
       "allowance": 20,
@@ -5507,7 +5160,7 @@
         "maxY": 100
       },
       "layer": "inner2",
-      "changedPixels": 6288,
+      "changedPixels": 5940,
       "rawChangedPixels": 6288,
       "inkPixels": 6400,
       "allowance": 20,
@@ -5526,8 +5179,8 @@
         "maxY": 100
       },
       "layer": "inner3",
-      "changedPixels": 6288,
-      "rawChangedPixels": 6288,
+      "changedPixels": 96,
+      "rawChangedPixels": 96,
       "inkPixels": 6400,
       "allowance": 20,
       "diagnostics": []
@@ -5545,8 +5198,8 @@
         "maxY": 100
       },
       "layer": "inner3",
-      "changedPixels": 6288,
-      "rawChangedPixels": 6288,
+      "changedPixels": 96,
+      "rawChangedPixels": 96,
       "inkPixels": 6400,
       "allowance": 20,
       "diagnostics": []
@@ -5798,8 +5451,8 @@
         "maxY": 30
       },
       "layer": "all",
-      "changedPixels": 16589,
-      "rawChangedPixels": 16589,
+      "changedPixels": 3067,
+      "rawChangedPixels": 3067,
       "inkPixels": 23515,
       "allowance": 192,
       "diagnostics": []
@@ -6207,8 +5860,8 @@
       "id": "case-0079",
       "test": "draw rectangular copper pour",
       "path": "tests/elements/pcb-copper-pour.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -6216,8 +5869,8 @@
         "maxY": 100
       },
       "layer": "all",
-      "changedPixels": 2400,
-      "rawChangedPixels": 2400,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 2400,
       "allowance": 20,
       "diagnostics": []
@@ -6226,8 +5879,8 @@
       "id": "case-0080",
       "test": "draw polygon copper pour",
       "path": "tests/elements/pcb-copper-pour.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -6235,8 +5888,8 @@
         "maxY": 100
       },
       "layer": "all",
-      "changedPixels": 6400,
-      "rawChangedPixels": 6400,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 6400,
       "allowance": 20,
       "diagnostics": []
@@ -6245,8 +5898,8 @@
       "id": "case-0081",
       "test": "draw copper pour with trace",
       "path": "tests/elements/pcb-copper-pour.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -6254,8 +5907,8 @@
         "maxY": 100
       },
       "layer": "all",
-      "changedPixels": 6192,
-      "rawChangedPixels": 6192,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 6400,
       "allowance": 20,
       "diagnostics": []
@@ -6264,8 +5917,8 @@
       "id": "case-0082",
       "test": "draw brep copper pours",
       "path": "tests/elements/pcb-copper-pour.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": -100,
         "maxX": 100,
@@ -6273,8 +5926,8 @@
         "maxY": 100
       },
       "layer": "all",
-      "changedPixels": 1729,
-      "rawChangedPixels": 1729,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1918,
       "allowance": 39,
       "diagnostics": []
@@ -6671,8 +6324,8 @@
         "maxY": 43.00000000000001
       },
       "layer": "top",
-      "changedPixels": 26543,
-      "rawChangedPixels": 26543,
+      "changedPixels": 20630,
+      "rawChangedPixels": 20630,
       "inkPixels": 49516,
       "allowance": 991,
       "diagnostics": [
@@ -6858,8 +6511,8 @@
         "maxY": 6.666666666666667
       },
       "layer": "all",
-      "changedPixels": 20976,
-      "rawChangedPixels": 20976,
+      "changedPixels": 1228,
+      "rawChangedPixels": 1228,
       "inkPixels": 20528,
       "allowance": 120,
       "diagnostics": []
@@ -6877,8 +6530,8 @@
         "maxY": 6.666666666666667
       },
       "layer": "all",
-      "changedPixels": 20976,
-      "rawChangedPixels": 20976,
+      "changedPixels": 1228,
+      "rawChangedPixels": 1228,
       "inkPixels": 20528,
       "allowance": 120,
       "diagnostics": []
@@ -7305,8 +6958,8 @@
       "id": "case-0129",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7314,8 +6967,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7324,8 +6977,8 @@
       "id": "case-0130",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7333,8 +6986,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7343,8 +6996,8 @@
       "id": "case-0131",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7352,8 +7005,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7476,8 +7129,8 @@
       "id": "case-0138",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7485,8 +7138,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7495,8 +7148,8 @@
       "id": "case-0139",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7504,8 +7157,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7514,8 +7167,8 @@
       "id": "case-0140",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7523,8 +7176,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7533,8 +7186,8 @@
       "id": "case-0141",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7542,8 +7195,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7552,8 +7205,8 @@
       "id": "case-0142",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7561,8 +7214,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7571,8 +7224,8 @@
       "id": "case-0143",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7580,8 +7233,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7647,8 +7300,8 @@
       "id": "case-0147",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7656,8 +7309,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7666,8 +7319,8 @@
       "id": "case-0148",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7675,8 +7328,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7685,8 +7338,8 @@
       "id": "case-0149",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -7694,8 +7347,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -7827,8 +7480,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -7846,8 +7499,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -7865,8 +7518,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -7998,8 +7651,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8017,8 +7670,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8036,8 +7689,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8055,8 +7708,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8074,8 +7727,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8093,8 +7746,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8169,8 +7822,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8188,8 +7841,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8207,8 +7860,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8217,8 +7870,8 @@
       "id": "case-0177",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8226,8 +7879,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8236,8 +7889,8 @@
       "id": "case-0178",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8245,8 +7898,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8255,8 +7908,8 @@
       "id": "case-0179",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8264,8 +7917,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8274,8 +7927,8 @@
       "id": "case-0180",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8283,8 +7936,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8293,8 +7946,8 @@
       "id": "case-0181",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8302,8 +7955,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8312,8 +7965,8 @@
       "id": "case-0182",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8321,8 +7974,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8331,8 +7984,8 @@
       "id": "case-0183",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8340,8 +7993,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8350,8 +8003,8 @@
       "id": "case-0184",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8359,8 +8012,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8369,8 +8022,8 @@
       "id": "case-0185",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8378,8 +8031,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8388,8 +8041,8 @@
       "id": "case-0186",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8397,8 +8050,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8407,8 +8060,8 @@
       "id": "case-0187",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8416,8 +8069,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8426,8 +8079,8 @@
       "id": "case-0188",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8435,8 +8088,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8445,8 +8098,8 @@
       "id": "case-0189",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8454,8 +8107,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8464,8 +8117,8 @@
       "id": "case-0190",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8473,8 +8126,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8483,8 +8136,8 @@
       "id": "case-0191",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8492,8 +8145,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8502,8 +8155,8 @@
       "id": "case-0192",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8511,8 +8164,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8521,8 +8174,8 @@
       "id": "case-0193",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8530,8 +8183,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8540,8 +8193,8 @@
       "id": "case-0194",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8549,8 +8202,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8559,8 +8212,8 @@
       "id": "case-0195",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8568,8 +8221,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8578,8 +8231,8 @@
       "id": "case-0196",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8587,8 +8240,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8597,8 +8250,8 @@
       "id": "case-0197",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8606,8 +8259,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8616,8 +8269,8 @@
       "id": "case-0198",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8625,8 +8278,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8635,8 +8288,8 @@
       "id": "case-0199",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8644,8 +8297,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8654,8 +8307,8 @@
       "id": "case-0200",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8663,8 +8316,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8673,8 +8326,8 @@
       "id": "case-0201",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8682,8 +8335,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8692,8 +8345,8 @@
       "id": "case-0202",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8701,8 +8354,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8711,8 +8364,8 @@
       "id": "case-0203",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -8720,8 +8373,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1164,
-      "rawChangedPixels": 1164,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -8739,8 +8392,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8758,8 +8411,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8777,8 +8430,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8796,8 +8449,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8815,8 +8468,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8834,8 +8487,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8853,8 +8506,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8872,8 +8525,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8891,8 +8544,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8910,8 +8563,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8929,8 +8582,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8948,8 +8601,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8967,8 +8620,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -8986,8 +8639,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9005,8 +8658,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9024,8 +8677,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9043,8 +8696,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9062,8 +8715,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9081,8 +8734,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9100,8 +8753,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9119,8 +8772,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9138,8 +8791,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9157,8 +8810,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9176,8 +8829,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9195,8 +8848,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9214,8 +8867,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -9233,8 +8886,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 1250,
-      "rawChangedPixels": 1250,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -11333,8 +10986,8 @@
       "id": "case-0341",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11342,8 +10995,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11390,8 +11043,8 @@
       "id": "case-0344",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11399,8 +11052,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11447,8 +11100,8 @@
       "id": "case-0347",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11456,8 +11109,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11504,8 +11157,8 @@
       "id": "case-0350",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11513,8 +11166,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11561,8 +11214,8 @@
       "id": "case-0353",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11570,8 +11223,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11618,8 +11271,8 @@
       "id": "case-0356",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11627,8 +11280,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11637,8 +11290,8 @@
       "id": "case-0357",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11646,8 +11299,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11675,8 +11328,8 @@
       "id": "case-0359",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11684,8 +11337,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11694,8 +11347,8 @@
       "id": "case-0360",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11703,8 +11356,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11732,8 +11385,8 @@
       "id": "case-0362",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11741,8 +11394,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11751,8 +11404,8 @@
       "id": "case-0363",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11760,8 +11413,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11789,8 +11442,8 @@
       "id": "case-0365",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -11798,8 +11451,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1157,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -11855,8 +11508,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -11912,8 +11565,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -11969,8 +11622,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -12026,8 +11679,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -12083,8 +11736,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -12140,8 +11793,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -12159,8 +11812,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -12197,8 +11850,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -12216,8 +11869,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -12254,8 +11907,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -12273,8 +11926,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -12311,8 +11964,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1243,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -13347,8 +13000,8 @@
       "id": "case-0447",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13356,8 +13009,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13366,8 +13019,8 @@
       "id": "case-0448",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13375,8 +13028,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13385,8 +13038,8 @@
       "id": "case-0449",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13394,8 +13047,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13404,8 +13057,8 @@
       "id": "case-0450",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13413,8 +13066,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13423,8 +13076,8 @@
       "id": "case-0451",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13432,8 +13085,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13442,8 +13095,8 @@
       "id": "case-0452",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13451,8 +13104,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13461,8 +13114,8 @@
       "id": "case-0453",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13470,8 +13123,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13480,8 +13133,8 @@
       "id": "case-0454",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13489,8 +13142,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13499,8 +13152,8 @@
       "id": "case-0455",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13508,8 +13161,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13518,8 +13171,8 @@
       "id": "case-0456",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13527,8 +13180,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13537,8 +13190,8 @@
       "id": "case-0457",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13546,8 +13199,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13556,8 +13209,8 @@
       "id": "case-0458",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13565,8 +13218,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13575,8 +13228,8 @@
       "id": "case-0459",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13584,8 +13237,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13594,8 +13247,8 @@
       "id": "case-0460",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13603,8 +13256,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13613,8 +13266,8 @@
       "id": "case-0461",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13622,8 +13275,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13632,8 +13285,8 @@
       "id": "case-0462",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13641,8 +13294,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13651,8 +13304,8 @@
       "id": "case-0463",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13660,8 +13313,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13670,8 +13323,8 @@
       "id": "case-0464",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13679,8 +13332,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13689,8 +13342,8 @@
       "id": "case-0465",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13698,8 +13351,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13708,8 +13361,8 @@
       "id": "case-0466",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13717,8 +13370,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13727,8 +13380,8 @@
       "id": "case-0467",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13736,8 +13389,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13746,8 +13399,8 @@
       "id": "case-0468",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13755,8 +13408,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13765,8 +13418,8 @@
       "id": "case-0469",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13774,8 +13427,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13784,8 +13437,8 @@
       "id": "case-0470",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13793,8 +13446,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13803,8 +13456,8 @@
       "id": "case-0471",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13812,8 +13465,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13822,8 +13475,8 @@
       "id": "case-0472",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13831,8 +13484,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 284,
-      "rawChangedPixels": 284,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13841,8 +13494,8 @@
       "id": "case-0473",
       "test": "via soldermask respects per-side tenting, legacy overrides, and physical layers",
       "path": "tests/elements/pcb-via-tenting.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 100,
@@ -13850,8 +13503,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1136,
-      "rawChangedPixels": 1157,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 1308,
       "allowance": 20,
       "diagnostics": []
@@ -13869,8 +13522,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -13888,8 +13541,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -13907,8 +13560,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -13926,8 +13579,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -13945,8 +13598,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -13964,8 +13617,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -13983,8 +13636,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14002,8 +13655,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14021,8 +13674,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14040,8 +13693,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14059,8 +13712,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14078,8 +13731,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14097,8 +13750,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14116,8 +13769,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14135,8 +13788,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14154,8 +13807,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14173,8 +13826,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14192,8 +13845,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14211,8 +13864,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14230,8 +13883,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14249,8 +13902,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14268,8 +13921,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14287,8 +13940,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14306,8 +13959,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14325,8 +13978,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14344,8 +13997,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 370,
-      "rawChangedPixels": 370,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -14363,8 +14016,8 @@
         "maxY": 100
       },
       "layer": "bottom",
-      "changedPixels": 1226,
-      "rawChangedPixels": 1243,
+      "changedPixels": 86,
+      "rawChangedPixels": 86,
       "inkPixels": 1394,
       "allowance": 20,
       "diagnostics": []
@@ -15425,8 +15078,8 @@
       "id": "case-0557",
       "test": "clips a trace exactly where it enters a rectangular copper pour",
       "path": "tests/elements/copper-pour-trace-clipping.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": -10,
         "maxX": 10,
@@ -15434,8 +15087,8 @@
         "maxY": 5
       },
       "layer": "all",
-      "changedPixels": 8000,
-      "rawChangedPixels": 8000,
+      "changedPixels": 0,
+      "rawChangedPixels": 4,
       "inkPixels": 8316,
       "allowance": 40,
       "diagnostics": []
@@ -15444,8 +15097,8 @@
       "id": "case-0558",
       "test": "clips a trace exactly where it enters a rectangular copper pour",
       "path": "tests/elements/copper-pour-trace-clipping.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": -10,
         "maxX": 10,
@@ -15453,8 +15106,8 @@
         "maxY": 5
       },
       "layer": "all",
-      "changedPixels": 8000,
-      "rawChangedPixels": 8000,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 8000,
       "allowance": 40,
       "diagnostics": []
@@ -15463,8 +15116,8 @@
       "id": "case-0559",
       "test": "preserves a trace inside a BRep copper-pour clearance ring",
       "path": "tests/elements/copper-pour-trace-clipping.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": -10,
         "maxX": 10,
@@ -15472,8 +15125,8 @@
         "maxY": 5
       },
       "layer": "all",
-      "changedPixels": 6400,
-      "rawChangedPixels": 6400,
+      "changedPixels": 0,
+      "rawChangedPixels": 8,
       "inkPixels": 7116,
       "allowance": 40,
       "diagnostics": []
@@ -15482,8 +15135,8 @@
       "id": "case-0560",
       "test": "preserves a trace inside a BRep copper-pour clearance ring",
       "path": "tests/elements/copper-pour-trace-clipping.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": -10,
         "maxX": 10,
@@ -15491,8 +15144,8 @@
         "maxY": 5
       },
       "layer": "all",
-      "changedPixels": 6400,
-      "rawChangedPixels": 6400,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 6400,
       "allowance": 40,
       "diagnostics": []
@@ -15624,8 +15277,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 177,
-      "rawChangedPixels": 177,
+      "changedPixels": 150,
+      "rawChangedPixels": 150,
       "inkPixels": 210,
       "allowance": 5,
       "diagnostics": []
@@ -15653,8 +15306,8 @@
       "id": "case-0569",
       "test": "route via tenting works without a board and only with soldermask enabled",
       "path": "tests/elements/pcb-trace-via-tenting-without-board.test.ts",
-      "pass": false,
-      "status": "mismatch",
+      "pass": true,
+      "status": "pass",
       "viewport": {
         "minX": 0,
         "maxX": 150,
@@ -15662,8 +15315,8 @@
         "maxY": 100
       },
       "layer": "top",
-      "changedPixels": 16,
-      "rawChangedPixels": 16,
+      "changedPixels": 0,
+      "rawChangedPixels": 0,
       "inkPixels": 210,
       "allowance": 5,
       "diagnostics": []
@@ -16300,8 +15953,8 @@
         "maxY": 6.666666666666667
       },
       "layer": "all",
-      "changedPixels": 9273,
-      "rawChangedPixels": 9273,
+      "changedPixels": 1198,
+      "rawChangedPixels": 1198,
       "inkPixels": 8800,
       "allowance": 120,
       "diagnostics": []
@@ -16338,8 +15991,8 @@
         "maxY": 6.666666666666667
       },
       "layer": "all",
-      "changedPixels": 20663,
-      "rawChangedPixels": 20663,
+      "changedPixels": 1229,
+      "rawChangedPixels": 1229,
       "inkPixels": 20322,
       "allowance": 120,
       "diagnostics": []
