@@ -19,14 +19,12 @@ for (const path of Object.keys(manifest.files)) {
   cpSync(resolve(installed, path), dest)
 }
 
-// Keep the frozen Canvas suite on the schema and SVG reference its goldens were
-// authored against. The parity runner still imports the current root SVG version.
-for (const dependency of ["circuit-json", "circuit-to-svg"]) {
-  const reference = dirname(
-    require.resolve(`${dependency}-reference/package.json`),
-  )
-  const link = resolve(target, "node_modules", dependency)
-  mkdirSync(dirname(link), { recursive: true })
-  rmSync(link, { recursive: true, force: true })
-  symlinkSync(reference, link, "dir")
-}
+// The byte-for-byte pinned Canvas reference uses the schema it was authored
+// against. Keep its types separate from the renderer's current Circuit JSON.
+const referenceSchema = dirname(
+  require.resolve("circuit-json-reference/package.json"),
+)
+const schemaLink = resolve(target, "node_modules/circuit-json")
+mkdirSync(dirname(schemaLink), { recursive: true })
+rmSync(schemaLink, { recursive: true, force: true })
+symlinkSync(referenceSchema, schemaLink, "dir")

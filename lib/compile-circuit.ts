@@ -8,7 +8,6 @@ import { drawPcbDimension } from "./pcb-dimension/draw-pcb-dimension"
 import { drawText } from "./text/draw-text"
 import { DEFAULT_LAYER_COLORS, normalizeLayer, parseColor } from "./colors"
 import {
-  capsule,
   ellipse,
   expandBrepRing,
   MeshBuilder,
@@ -16,9 +15,6 @@ import {
   rotate,
 } from "./geometry"
 import type { CircuitJson, CompiledScene, Diagnostic, Point } from "./types"
-import { distance } from "circuit-json"
-import { createTraceClipper } from "./clip-trace"
-import { createBoardOwnerMap } from "./board-ownership"
 
 type Element = Record<string, any>
 export function getElementId(element: Element, index = 0): string {
@@ -147,84 +143,6 @@ export function compileCircuitJson(
   const openings: { element: Element; index: number; layers: string[] }[] = []
   const keepouts: { rings: Point[][]; index: number; layers: string[] }[] = []
   const cutouts: { rings: Point[][]; index: number }[] = []
-  const owners = createBoardOwnerMap(elements)
-  const viaPositions = new Set(
-    elements.filter((e) => e.type === "pcb_via").map((e) => `${e.x}:${e.y}`),
-  )
-  const pourShapes: { layer: string; rings: Point[][] }[] = []
-  for (const e of elements) {
-    if (e.type !== "pcb_copper_pour") continue
-    try {
-      pourShapes.push({ layer: e.layer, rings: shape(e) })
-    } catch {
-      // The element pass below reports unsupported pour geometry.
-    }
-  }
-  const clipTrace = createTraceClipper(pourShapes)
-  const tracePolygon = (
-    layer: string,
-    index: number,
-    ring: Point[],
-    inside = false,
-  ) => {
-    const clipped = inside ? [] : clipTrace(layer, ring)
-    if (clipped === undefined) {
-      get(layer, index).polygon([ring])
-      return
-    }
-    // Retain full traces for X-Ray and hidden pours; normal views use the clip.
-    get(layer, index, false, 2).polygon([ring])
-    for (const polygon of clipped) get(layer, index, false, 3).polygon(polygon)
-  }
-  const traceLine = (
-    layer: string,
-    index: number,
-    a: Element,
-    b: Element,
-    width: number,
-  ) => {
-    if (width > 0)
-      tracePolygon(
-        layer,
-        index,
-        capsule(a as Point, b as Point, width),
-        !!(a.is_inside_copper_pour && b.is_inside_copper_pour),
-      )
-  }
-  const drawVia = (e: Element, index: number, layers: string[]) => {
-    for (const layer of layers) get(layer, index).polygon(shape(e))
-    openings.push({ element: e, index, layers })
-    const owner = owners.get(e.pcb_via_id) ?? owners.get(e.pcb_trace_id)
-    for (const side of ["top", "bottom"]) {
-      if (!layers.includes(side)) continue
-      if (!e.is_covered_with_solder_mask)
-        get(`soldermask_${side}`, index, true).polygon(shape(e))
-      const tented =
-        e[`tented_on_${side}`] ??
-        e.is_tented ??
-        owner?.[`default_via_tented_on_${side}`]
-      // This side-specific surface pass also covers the drill marker when tented.
-      const surface = get(`via_surface_${side}`, index)
-      surface.color = tented
-        ? (options.layerColors?.[`soldermask_${side}`] ?? [
-            18 / 255,
-            82 / 255,
-            50 / 255,
-            1,
-          ])
-        : (options.layerColors?.[side] ?? DEFAULT_LAYER_COLORS[side])
-      surface.polygon(shape(e))
-      surface.color = tented
-        ? [
-            surface.color[0] / 2,
-            surface.color[1] / 2,
-            surface.color[2] / 2,
-            surface.color[3],
-          ]
-        : (options.layerColors?.drill ?? DEFAULT_LAYER_COLORS.drill)
-      surface.polygon(shape(e, true))
-    }
-  }
   for (const [index, input] of elements.entries()) {
     const e = input as Element,
       type: string = e.type
@@ -251,14 +169,11 @@ export function compileCircuitJson(
             to = copper.indexOf(e.to_layer)
           layers = copper.slice(Math.min(from, to), Math.max(from, to) + 1)
         }
-        if (type === "pcb_via") drawVia(e, index, layers)
-        else {
-          for (const layer of layers) get(layer, index).polygon(shape(e))
-          openings.push({ element: e, index, layers })
-          for (const side of ["top", "bottom"])
-            if (layers.includes(side) && !e.is_covered_with_solder_mask)
-              get(`soldermask_${side}`, index, true).polygon(shape(e))
-        }
+        for (const layer of layers) get(layer, index).polygon(shape(e))
+        openings.push({ element: e, index, layers })
+        for (const side of ["top", "bottom"])
+          if (layers.includes(side) && !e.is_covered_with_solder_mask)
+            get(`soldermask_${side}`, index, true).polygon(shape(e))
       } else if (type === "pcb_hole") {
         openings.push({
           element: { ...e, shape: e.hole_shape },
@@ -279,56 +194,16 @@ export function compileCircuitJson(
           throw new Error(
             "Interpolated/through-pad traces are not supported yet",
           )
-        for (const [routeIndex, point] of route.entries()) {
-          if (
-            point.route_type !== "via" ||
-            viaPositions.has(`${point.x}:${point.y}`)
-          )
-            continue
-          const widths = [-1, 1].map((direction) => {
-            for (
-              let i = routeIndex + direction;
-              i >= 0 && i < route.length;
-              i += direction
-            ) {
-              const p = route[i]
-              if (hasWireTaper(p))
-                return direction < 0 ? p.end_width : p.start_width
-              if ("width" in p && typeof p.width === "number") return p.width
-            }
-            return 0
-          })
-          const hole = Math.max(...widths, 0.3)
-          const owner = owners.get(e.pcb_trace_id)
-          const parse = (value: unknown, fallback: number) => {
-            const result = distance.safeParse(value)
-            return result.success ? result.data : fallback
-          }
-          drawVia(
-            {
-              ...point,
-              type: "pcb_via",
-              pcb_trace_id: e.pcb_trace_id,
-              hole_diameter: parse(owner?.min_via_hole_diameter, hole),
-              outer_diameter: parse(
-                owner?.min_via_pad_diameter,
-                Math.max(hole * 2, 0.6),
-              ),
-            },
-            index,
-            [point.from_layer, point.to_layer],
-          )
-        }
         for (const point of getWireTaperSegments(route)) {
           const polygon = getWireTaperPolygon(point)
           if (!polygon.length)
             throw new Error("Invalid teardrop geometry or interpolation mode")
-          tracePolygon(point.layer, index, polygon, point.is_inside_copper_pour)
+          get(point.layer, index).polygon([polygon])
         }
         for (const point of route) {
           if (point.route_type !== "through_pad") continue
           for (const layer of new Set([point.start_layer, point.end_layer]))
-            traceLine(layer, index, point.start, point.end, point.width)
+            get(layer, index).line(point.start, point.end, point.width)
         }
         for (let i = 1; i < route.length; i++) {
           let a = route[i - 1],
@@ -355,19 +230,19 @@ export function compileCircuitJson(
             b.route_type === "wire" &&
             a.layer === b.layer
           )
-            traceLine(a.layer, index, a, b, a.width)
+            get(a.layer, index).line(a, b, a.width)
           else if (
             a.route_type === "wire" &&
             b.route_type === "via" &&
             [b.from_layer, b.to_layer].includes(a.layer)
           )
-            traceLine(a.layer, index, a, b, a.width)
+            get(a.layer, index).line(a, b, a.width)
           else if (
             a.route_type === "via" &&
             b.route_type === "wire" &&
             [a.from_layer, a.to_layer].includes(b.layer)
           )
-            traceLine(b.layer, index, a, b, b.width)
+            get(b.layer, index).line(a, b, b.width)
         }
       } else if (type === "pcb_copper_pour") {
         get(e.layer, index, false, 1).polygon(shape(e))

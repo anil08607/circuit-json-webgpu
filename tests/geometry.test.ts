@@ -11,7 +11,6 @@ import { fixtures, silkscreenGraphics } from "../site/fixtures"
 import large from "./fixtures/am3352-dev-board.circuit.json"
 import breakout from "./fixtures/f1c100s-breakout.circuit.json"
 import museSockets from "./fixtures/muse-socket-plated-holes.circuit.json"
-import { createBoardOwnerMap } from "../lib/board-ownership"
 
 function area(mesh: ReturnType<MeshBuilder["build"]>) {
   let area = 0
@@ -24,131 +23,6 @@ function area(mesh: ReturnType<MeshBuilder["build"]>) {
   }
   return area
 }
-
-test("board ownership follows nested groups, explicit via parents, and cycles safely", () => {
-  const a = { type: "pcb_board", pcb_board_id: "a", subcircuit_id: "a" }
-  const b = { type: "pcb_board", pcb_board_id: "b", subcircuit_id: "b" }
-  const elements = [
-    a,
-    b,
-    {
-      type: "source_group",
-      source_group_id: "source",
-      is_subcircuit: true,
-      subcircuit_id: "child",
-      parent_subcircuit_id: "a",
-    },
-    { type: "pcb_group", pcb_group_id: "group", subcircuit_id: "child" },
-    { type: "pcb_trace", pcb_trace_id: "trace", pcb_group_id: "group" },
-    { type: "pcb_via", pcb_via_id: "via", pcb_trace_id: "trace" },
-    {
-      type: "pcb_via",
-      pcb_via_id: "override",
-      subcircuit_id: "b",
-      pcb_trace_id: "trace",
-    },
-    { type: "pcb_group", pcb_group_id: "cycle", subcircuit_id: "cycle" },
-  ] as unknown as Parameters<typeof compileCircuitJson>[0]
-  const owners = createBoardOwnerMap(elements)
-  expect(owners.get("via")).toBe(a)
-  expect(owners.get("override")).toBe(b)
-  expect(owners.get("cycle")).toBeUndefined()
-})
-
-test("route vias use board dimensions and standalone vias suppress duplicate geometry", () => {
-  const board = {
-    type: "pcb_board",
-    pcb_board_id: "board",
-    min_via_hole_diameter: "0.5mm",
-    min_via_pad_diameter: "1mm",
-    default_via_tented_on_top: true,
-  }
-  const trace = {
-    type: "pcb_trace",
-    pcb_trace_id: "trace",
-    route: [
-      { route_type: "wire", x: -2, y: 0, width: 0.2, layer: "top" },
-      {
-        route_type: "via",
-        x: 0,
-        y: 0,
-        from_layer: "top",
-        to_layer: "bottom",
-        tented_on_bottom: false,
-      },
-      { route_type: "wire", x: 2, y: 0, width: 0.2, layer: "bottom" },
-    ],
-  }
-  // A board can supply defaults without an outline in this geometry-only fixture.
-  const compile = (extra: Record<string, unknown>[] = []) =>
-    compileCircuitJson([
-      { ...board, center: { x: 0, y: 0 }, width: 10, height: 10 },
-      trace,
-      ...extra,
-    ] as unknown as Parameters<typeof compileCircuitJson>[0])
-  const scene = compile()
-  expect(scene.diagnostics).toEqual([])
-  expect(area(scene.layers.find((l) => l.name === "drill")!.paint)).toBeCloseTo(
-    Math.PI * 0.25 ** 2,
-    3,
-  )
-  const top = scene.layers.find((l) => l.name === "via_surface_top")!.paint
-  expect(top.vertices[2]).toBeCloseTo(18 / 255)
-  expect(top.vertices[3]).toBeCloseTo(82 / 255)
-  const standalone = compile([
-    {
-      type: "pcb_via",
-      pcb_via_id: "via",
-      x: 0,
-      y: 0,
-      outer_diameter: 1,
-      hole_diameter: 0.5,
-      layers: ["top", "bottom"],
-      tented_on_top: false,
-    },
-  ])
-  expect(
-    area(standalone.layers.find((l) => l.name === "drill")!.paint),
-  ).toBeCloseTo(area(scene.layers.find((l) => l.name === "drill")!.paint), 5)
-  expect(
-    standalone.layers.find((l) => l.name === "via_surface_top")!.paint
-      .vertices[2],
-  ).toBeCloseTo(200 / 255)
-})
-
-test("trace clipping retains pour holes and full traces for X-Ray or hidden pours", () => {
-  const scene = compileCircuitJson([
-    {
-      type: "pcb_trace",
-      pcb_trace_id: "trace",
-      route: [
-        { route_type: "wire", x: -3, y: 0, width: 0.2, layer: "top" },
-        { route_type: "wire", x: 3, y: 0, width: 0.2, layer: "top" },
-      ],
-    },
-    {
-      type: "pcb_copper_pour",
-      pcb_copper_pour_id: "pour",
-      layer: "top",
-      shape: "brep",
-      brep_shape: {
-        outer_ring: { vertices: rectangle({ x: 0, y: 0 }, 4, 4) },
-        inner_rings: [{ vertices: rectangle({ x: 0, y: 0 }, 1, 1) }],
-      },
-    },
-  ] as unknown as Parameters<typeof compileCircuitJson>[0])
-  expect(scene.diagnostics).toEqual([])
-  const m = scene.layers.find((l) => l.name === "top")!.paint
-  const categoryArea = (category: number) =>
-    area({
-      ...m,
-      indices: m.indices.filter(
-        (index, i) => m.vertices[m.indices[i - (i % 3)] * 8 + 7] === category,
-      ),
-    })
-  expect(categoryArea(2)).toBeCloseTo(1.231, 3)
-  expect(categoryArea(3)).toBeCloseTo(0.631, 3)
-})
 
 test("through-pad layer transitions connect each wire to its pad anchor", () => {
   const scene = compileCircuitJson([
@@ -531,14 +405,9 @@ test("wire-to-via segments stay on the adjacent layer without bridging other run
       ],
     },
   ] as any)
-  expect(
-    scene.layers
-      .filter((l) => /^(top|bottom|inner\d+)$/.test(l.name))
-      .map((l) => l.name)
-      .sort(),
-  ).toEqual(["bottom", "top"])
+  expect(scene.layers.map((l) => l.name).sort()).toEqual(["bottom", "top"])
   expect(area(scene.layers.find((l) => l.name === "top")!.paint)).toBeCloseTo(
-    5 + Math.PI / 4 + Math.PI,
+    5 + Math.PI / 4,
     1,
   )
 })

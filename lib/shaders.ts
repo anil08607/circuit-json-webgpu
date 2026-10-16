@@ -22,12 +22,9 @@ struct VertexOut {
 @fragment fn fragmentMain(in: VertexOut) -> @location(0) vec4f {
   if (in.category == 1u && camera.viewport.z == 0) { discard; }
   if (camera.viewport.w == 1) {
-    if (in.category == 3u) { discard; }
     if (in.selected == 0u) { discard; }
     return vec4f(in.color.rgb, 1);
   }
-  if (in.category == 2u && camera.viewport.z > 0) { discard; }
-  if (in.category == 3u && camera.viewport.z == 0) { discard; }
   let alpha = in.color.a * select(1.0, camera.viewport.z, in.category == 1u);
   return vec4f(in.color.rgb * alpha, alpha);
 }

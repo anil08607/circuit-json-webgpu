@@ -84,7 +84,7 @@ export class MeshBuilder {
     }
   }
 }
-export function capsule(a: Point, b: Point, width: number): Point[] {
+function capsule(a: Point, b: Point, width: number): Point[] {
   const angle = Math.atan2(b.y - a.y, b.x - a.x),
     r = width / 2
   const points: Point[] = []
