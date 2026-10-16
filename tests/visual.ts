@@ -5,7 +5,13 @@ import { createServer } from "vite"
 import { chromium } from "playwright"
 import { PNG } from "pngjs"
 import pixelmatch from "pixelmatch"
+import { Resvg } from "@resvg/resvg-js"
+import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
+import { featureSnapshot } from "./parity/snapshot"
+import { prepareComparison } from "./parity/prepare"
 import { compose, scale, translate } from "transformation-matrix"
+import type { CircuitJson } from "../lib"
+import pcbBendFixture from "./fixtures/pcb-bend.circuit.json"
 
 const root = fileURLToPath(new URL("../", import.meta.url))
 const server = await createServer({
@@ -545,6 +551,100 @@ try {
   assert.deepEqual(pixel(throughPad.png, 280, 300), layerColors.top)
   assert.deepEqual(pixel(throughPad.png, 520, 300), layerColors.bottom)
   await snapshot("through-pad-trace")
+  const { scene: pcbBendScene } = prepareComparison({
+    width: 800,
+    height: 600,
+    elements: pcbBendFixture,
+    matrix: { a: 14, b: 0, c: 0, d: -14, e: 400, f: 300 },
+    contextTransform: { a: 1, b: 0, c: 0, d: 1, e: 0, f: 0 },
+    options: {},
+  })
+  assert(pcbBendScene)
+  const pcbBend = await page.evaluate((scene) => {
+    const drawer = window.gpuTest.drawer
+    const options = {
+      transform: scene.transform,
+      showBendLines: true,
+      selectedLayer: "top",
+      hiddenLayerOpacity: 0,
+      background: [0, 0, 0, 1] as const,
+    }
+    drawer.drawElements(scene.elements as unknown as CircuitJson, options)
+    return {
+      diagnostics: drawer.diagnostics,
+      png: document
+        .querySelector("canvas")!
+        .toDataURL("image/png")
+        .split(",")[1],
+    }
+  }, pcbBendScene)
+  assert.deepEqual(pcbBend.diagnostics, [
+    {
+      elementId: "horizontal",
+      type: "pcb_bend",
+      message: "Error: Unsupported PCB element",
+    },
+    {
+      elementId: "vertical",
+      type: "pcb_bend",
+      message: "Error: Unsupported PCB element",
+    },
+  ])
+  // The owning boards remain, but neither bend centerline is rendered.
+  assert.deepEqual(pixel(pcbBend.png, 123, 215), [0, 0, 0, 255])
+  assert.deepEqual(pixel(pcbBend.png, 623, 408), [0, 0, 0, 255])
+  const pcbBendSvg = convertCircuitJsonToPcbSvg(
+    pcbBendScene.elements as Parameters<typeof convertCircuitJsonToPcbSvg>[0],
+    {
+      width: pcbBendScene.width,
+      height: pcbBendScene.height,
+      viewport: pcbBendScene.viewport,
+      layer: "top",
+      showBendLines: true,
+      showSolderMask: false,
+      shouldDrawErrors: false,
+      shouldDrawRatsNest: false,
+      includeVersion: false,
+      drawPaddingOutsideBoard: true,
+      backgroundColor: pcbBendScene.background,
+      colorOverrides: { boardOutline: "#d0d2cd" },
+    },
+  )
+  assert.equal(pcbBendSvg.match(/class="pcb-bend-line"/g)?.length, 2)
+  // Resvg does not load CSS @font-face URLs. Load the reference SVG's embedded
+  // alphabet explicitly so the left panel includes its actual bend labels.
+  const embeddedFont = pcbBendSvg.match(/data:font\/ttf;base64,([^']+)/)?.[1]
+  assert(embeddedFont)
+  const comparisonDir = new URL("./actual/parity/", import.meta.url)
+  await mkdir(comparisonDir, { recursive: true })
+  const fontFile = new URL("pcb-bend-reference.ttf", comparisonDir)
+  await writeFile(fontFile, Buffer.from(embeddedFont, "base64"))
+  const svgPng = new Resvg(pcbBendSvg, {
+    font: { loadSystemFonts: false, fontFiles: [fileURLToPath(fontFile)] },
+  })
+    .render()
+    .asPng()
+  const pcbBendReference = PNG.sync.read(svgPng)
+  assert.deepEqual(
+    pixel(svgPng.toString("base64"), 123, 215),
+    [255, 213, 79, 255],
+  )
+  assert.deepEqual(
+    pixel(svgPng.toString("base64"), 623, 408),
+    [255, 213, 79, 255],
+  )
+  assert(
+    (
+      await featureSnapshot(
+        "pcb-bend",
+        pcbBendReference,
+        PNG.sync.read(Buffer.from(pcbBend.png, "base64")),
+        "pcb-bend",
+      )
+    ).pass,
+    "PCB bend SVG/WebGPU comparison snapshot",
+  )
+  console.log("snapshot pcb-bend (circuit-to-svg / circuit-json-webgpu)")
   for (const name of names) {
     const stats = await page.evaluate(
       (name) => window.gpuTest.renderFixture(name),
@@ -692,7 +792,7 @@ try {
     errors.filter((e) => !e.includes("404")),
     [],
   )
-  const report = { snapshots: names.length + 3, adapter, large, navigation }
+  const report = { snapshots: names.length + 4, adapter, large, navigation }
   await writeFile(
     new URL("./actual/report.json", import.meta.url),
     JSON.stringify(report, null, 2),
