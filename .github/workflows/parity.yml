@@ -15,23 +15,24 @@ jobs:
           path: .parity-base
       - uses: oven-sh/setup-bun@v2
       - run: bun install
-      - run: bun install
+      - name: Install base with the same SVG reference
+        run: |
+          svg_version="$(bun -p "require('../package.json').devDependencies['circuit-to-svg']")"
+          bun add --dev --exact "circuit-to-svg@$svg_version"
         working-directory: .parity-base
       - run: bunx playwright install --with-deps chromium
       # The strict audit has known failures on main. Run both revisions on the
-      # same runner with the same current fixtures and SVG reference. Only the
-      # renderer source and its runtime dependencies come from the base checkout.
-      # The required comparison below still rejects every renderer regression.
+      # same runner and SVG version; the required comparison below rejects every
+      # new regression. The frozen Canvas fixtures remain identical in both.
       - name: Audit base revision
-        run: xvfb-run -a env WEBGPU_SOFTWARE=1 PARITY_RENDERER_ROOT=.parity-base bun run test:parity
+        run: xvfb-run -a env WEBGPU_SOFTWARE=1 bun run test:parity
+        working-directory: .parity-base
         continue-on-error: true
-      - name: Preserve base report
-        run: cp tests/actual/parity/report.json tests/actual/parity/base-report.json
       - name: Audit proposed revision
         run: xvfb-run -a env WEBGPU_SOFTWARE=1 bun run test:parity
         continue-on-error: true
       - name: Reject parity regressions
-        run: bun tests/parity/check-regressions.ts tests/actual/parity/base-report.json tests/actual/parity/report.json
+        run: bun tests/parity/check-regressions.ts .parity-base/tests/actual/parity/report.json tests/actual/parity/report.json
       - run: bun run test:parity-layout
         if: always()
       - uses: actions/upload-artifact@v4

@@ -34,8 +34,6 @@ export function compare(expected: PNG, actual: PNG, diff: PNG) {
     actual.height,
     { threshold: 0.1 },
   )
-  // The result below is capped by rawChanged, so filtering cannot change zero.
-  if (rawChanged === 0) return { rawChanged, changed: 0 }
   const changed = pixelmatch(
     filtered(expected),
     filtered(actual),
