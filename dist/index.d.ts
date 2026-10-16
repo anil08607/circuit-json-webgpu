@@ -19,7 +19,7 @@ type RenderOptions = {
     layers?: readonly string[];
     selectedLayer?: string;
     hiddenLayerOpacity?: number;
-    /** Copper-pour alpha multiplier (0–1, default 1). showCopperPours=false overrides it. */
+    /** Copper-pour alpha multiplier (0–1, default 0.5, matching Canvas/SVG). showCopperPours=false overrides it. */
     copperPourOpacity?: number;
     showCopperPours?: boolean;
     /** Board substrate is hidden by default; outlines remain visible. */
@@ -29,6 +29,10 @@ type RenderOptions = {
     showFabricationNotes?: boolean;
     showPcbNotes?: boolean;
     showCourtyards?: boolean;
+    /** Optional flat bend centerlines and labels, visible on every PCB side.
+     * Hidden by default, matching circuit-to-svg. Uses the "bend" overlay layer.
+     */
+    showBendLines?: boolean;
     highlightedElementIds?: readonly string[];
     /** Copper belonging to an inspected net. Supply resolved PCB element IDs.
      * Selected copper is opaque on every layer; other copper uses hiddenLayerOpacity.
