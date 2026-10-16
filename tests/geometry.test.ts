@@ -1,5 +1,6 @@
 import { expect, test } from "bun:test"
 import { compileCircuitJson } from "../lib"
+import type { CircuitJson } from "../lib"
 import { drawKeepout } from "../lib/draw-keepout"
 import {
   ellipse,
@@ -11,6 +12,7 @@ import { fixtures, silkscreenGraphics } from "../site/fixtures"
 import large from "./fixtures/am3352-dev-board.circuit.json"
 import breakout from "./fixtures/f1c100s-breakout.circuit.json"
 import museSockets from "./fixtures/muse-socket-plated-holes.circuit.json"
+import pcbBend from "./fixtures/pcb-bend.circuit.json"
 
 function area(mesh: ReturnType<MeshBuilder["build"]>) {
   let area = 0
@@ -23,6 +25,23 @@ function area(mesh: ReturnType<MeshBuilder["build"]>) {
   }
   return area
 }
+
+test("PCB bends produce unsupported-element diagnostics without drawing their centerlines", () => {
+  const scene = compileCircuitJson(pcbBend as CircuitJson)
+  expect(scene.diagnostics).toEqual([
+    {
+      elementId: "horizontal",
+      type: "pcb_bend",
+      message: "Error: Unsupported PCB element",
+    },
+    {
+      elementId: "vertical",
+      type: "pcb_bend",
+      message: "Error: Unsupported PCB element",
+    },
+  ])
+  expect(scene.layers.some((layer) => layer.name === "bend")).toBe(false)
+})
 
 test("through-pad layer transitions connect each wire to its pad anchor", () => {
   const scene = compileCircuitJson([

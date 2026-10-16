@@ -6,6 +6,8 @@ import { chromium } from "playwright"
 import { PNG } from "pngjs"
 import pixelmatch from "pixelmatch"
 import { compose, scale, translate } from "transformation-matrix"
+import type { CircuitJson } from "../lib"
+import pcbBendFixture from "./fixtures/pcb-bend.circuit.json"
 
 const root = fileURLToPath(new URL("../", import.meta.url))
 const server = await createServer({
@@ -545,6 +547,39 @@ try {
   assert.deepEqual(pixel(throughPad.png, 280, 300), layerColors.top)
   assert.deepEqual(pixel(throughPad.png, 520, 300), layerColors.bottom)
   await snapshot("through-pad-trace")
+  const pcbBend = await page.evaluate(async (elements) => {
+    const drawer = window.gpuTest.drawer
+    drawer.drawElements(elements, {
+      transform: { a: 14, b: 0, c: 0, d: -14, e: 400, f: 300 },
+      selectedLayer: "top",
+      hiddenLayerOpacity: 0,
+      background: [0, 0, 0, 1],
+    })
+    await drawer.flush()
+    return {
+      diagnostics: drawer.diagnostics,
+      png: document
+        .querySelector("canvas")!
+        .toDataURL("image/png")
+        .split(",")[1],
+    }
+  }, pcbBendFixture as CircuitJson)
+  assert.deepEqual(pcbBend.diagnostics, [
+    {
+      elementId: "horizontal",
+      type: "pcb_bend",
+      message: "Error: Unsupported PCB element",
+    },
+    {
+      elementId: "vertical",
+      type: "pcb_bend",
+      message: "Error: Unsupported PCB element",
+    },
+  ])
+  // The owning boards remain, but neither bend centerline is rendered.
+  assert.deepEqual(pixel(pcbBend.png, 123, 215), [0, 0, 0, 255])
+  assert.deepEqual(pixel(pcbBend.png, 623, 408), [0, 0, 0, 255])
+  await snapshot("pcb-bend")
   for (const name of names) {
     const stats = await page.evaluate(
       (name) => window.gpuTest.renderFixture(name),
@@ -692,7 +727,7 @@ try {
     errors.filter((e) => !e.includes("404")),
     [],
   )
-  const report = { snapshots: names.length + 3, adapter, large, navigation }
+  const report = { snapshots: names.length + 4, adapter, large, navigation }
   await writeFile(
     new URL("./actual/report.json", import.meta.url),
     JSON.stringify(report, null, 2),
