@@ -547,38 +547,69 @@ try {
   assert.deepEqual(pixel(throughPad.png, 280, 300), layerColors.top)
   assert.deepEqual(pixel(throughPad.png, 520, 300), layerColors.bottom)
   await snapshot("through-pad-trace")
-  const pcbBend = await page.evaluate(async (elements) => {
+  const pcbBend = await page.evaluate((elements) => {
     const drawer = window.gpuTest.drawer
+    const canvas = document.querySelector("canvas")!
+    const capture = () => canvas.toDataURL("image/png").split(",")[1]
     drawer.drawElements(elements, {
       transform: { a: 14, b: 0, c: 0, d: -14, e: 400, f: 300 },
       selectedLayer: "top",
       hiddenLayerOpacity: 0,
       background: [0, 0, 0, 1],
     })
-    await drawer.flush()
+    const hidden = capture()
+    const uploads = drawer.stats.geometryUploads
+    drawer.render({ showBendLines: true })
+    const top = capture()
+    drawer.render({ selectedLayer: "bottom" })
+    const bottom = capture()
+    drawer.render({ layers: ["top", "edge_cuts"] })
+    const filtered = capture()
+    drawer.render({ layers: undefined, showBendLines: false })
+    const disabled = capture()
+    drawer.render({ showBendLines: true, selectedLayer: "top" })
     return {
       diagnostics: drawer.diagnostics,
-      png: document
-        .querySelector("canvas")!
-        .toDataURL("image/png")
-        .split(",")[1],
+      hidden,
+      top,
+      bottom,
+      filtered,
+      disabled,
+      geometryUploads: drawer.stats.geometryUploads - uploads,
     }
   }, pcbBendFixture as CircuitJson)
-  assert.deepEqual(pcbBend.diagnostics, [
-    {
-      elementId: "horizontal",
-      type: "pcb_bend",
-      message: "Error: Unsupported PCB element",
-    },
-    {
-      elementId: "vertical",
-      type: "pcb_bend",
-      message: "Error: Unsupported PCB element",
-    },
-  ])
-  // The owning boards remain, but neither bend centerline is rendered.
-  assert.deepEqual(pixel(pcbBend.png, 123, 215), [0, 0, 0, 255])
-  assert.deepEqual(pixel(pcbBend.png, 623, 408), [0, 0, 0, 255])
+  assert.deepEqual(pcbBend.diagnostics, [])
+  for (const png of [
+    pcbBend.hidden,
+    pcbBend.top,
+    pcbBend.bottom,
+    pcbBend.filtered,
+    pcbBend.disabled,
+  ]) {
+    assert(pixel(png, 92, 200)[0] > 0, "Left board outline remains visible")
+    assert(pixel(png, 428, 200)[0] > 0, "Right board outline remains visible")
+  }
+  for (const png of [pcbBend.top, pcbBend.bottom]) {
+    assert.deepEqual(pixel(png, 123, 215), [255, 213, 79, 255])
+    assert.deepEqual(pixel(png, 623, 408), [255, 213, 79, 255])
+    assert.deepEqual(pixel(png, 133, 215), [0, 0, 0, 255], "Bend dash gap")
+    assert.deepEqual(pixel(png, 118, 215), [0, 0, 0, 255], "Finite bend start")
+    assert.deepEqual(pixel(png, 346, 215), [0, 0, 0, 255], "Finite bend end")
+  }
+  for (const png of [pcbBend.hidden, pcbBend.filtered, pcbBend.disabled]) {
+    assert.deepEqual(pixel(png, 123, 215), [0, 0, 0, 255])
+    assert.deepEqual(pixel(png, 623, 408), [0, 0, 0, 255])
+  }
+  assert.equal(
+    pcbBend.top,
+    pcbBend.bottom,
+    "Bend labels are independent of the selected copper side",
+  )
+  assert.equal(
+    pcbBend.geometryUploads,
+    0,
+    "Bend visibility reuses retained geometry",
+  )
   await snapshot("pcb-bend")
   for (const name of names) {
     const stats = await page.evaluate(
