@@ -345,6 +345,9 @@ export function compileCircuitJson(
           "pcb_trace_hint",
           "pcb_anchor",
           "pcb_breakout_point", // Routing target metadata, not visible geometry.
+          // Mechanical flex elements are not drawn in circuit-to-canvas's 2D view.
+          "pcb_bend",
+          "pcb_stiffener",
         ].includes(type) &&
         !/_(error|warning)$/.test(type)
       ) {

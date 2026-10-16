@@ -1,4 +1,5 @@
 import { expect, test } from "bun:test"
+import "./parity/prepare-upstream"
 import { compileCircuitJson } from "../lib"
 import { drawKeepout } from "../lib/draw-keepout"
 import {
@@ -339,6 +340,115 @@ test("reports unsupported shapes instead of silently hiding them", () => {
     },
   ] as any)
   expect(scene.diagnostics[0].elementId).toBe("bad")
+})
+
+const flexElements = [
+  {
+    type: "pcb_bend",
+    pcb_bend_id: "bend",
+    pcb_board_id: "board",
+    start: { x: -2, y: 0 },
+    end: { x: 2, y: 0 },
+    bend_angle: 90,
+    bend_radius: 1,
+    bend_side: "left",
+  },
+  {
+    type: "pcb_stiffener",
+    pcb_stiffener_id: "rect-stiffener",
+    pcb_board_id: "board",
+    layer: "top",
+    material: "fr4",
+    thickness: 0.2,
+    shape: "rect",
+    center: { x: 0, y: 0 },
+    width: 3,
+    height: 2,
+    rotation: 45,
+  },
+  {
+    type: "pcb_stiffener",
+    pcb_stiffener_id: "polygon-stiffener",
+    pcb_board_id: "board",
+    layer: "bottom",
+    material: "polyimide",
+    thickness: 0.1,
+    shape: "polygon",
+    outline: [
+      { x: -2, y: -2 },
+      { x: 2, y: -2 },
+      { x: 0, y: 2 },
+    ],
+  },
+] satisfies import("../lib/types").CircuitJson
+
+test("flex mechanical elements produce no 2D geometry or diagnostics", () => {
+  const scene = compileCircuitJson(flexElements)
+  expect(scene.diagnostics).toEqual([])
+  expect(scene.layers).toEqual([])
+  expect(scene.triangleCount).toBe(0)
+  expect(scene.elementIds).toEqual([
+    "bend",
+    "rect-stiffener",
+    "polygon-stiffener",
+  ])
+  expect(
+    compileCircuitJson([{ type: "pcb_future_geometry" }] as any).diagnostics,
+  ).toHaveLength(1)
+})
+
+test("flex elements leave Canvas pixels and WebGPU geometry unchanged", async () => {
+  const { createCanvas } = await import("@napi-rs/canvas")
+  // Keep the frozen Canvas schema out of the renderer's TypeScript program.
+  const referencePath =
+    "./upstream/circuit-to-canvas/lib/drawer/CircuitToCanvasDrawer"
+  const { CircuitToCanvasDrawer } = await import(referencePath)
+  for (const layer of ["top", "bottom"] as const) {
+    const pad = {
+      type: "pcb_smtpad" as const,
+      pcb_smtpad_id: "pad",
+      pcb_component_id: "component",
+      shape: "rect" as const,
+      layer,
+      x: 0,
+      y: 0,
+      width: 2,
+      height: 2,
+    }
+    const elements = [...flexElements, pad]
+    const scene = compileCircuitJson(elements)
+    const reference = compileCircuitJson([pad])
+    expect(scene.diagnostics).toEqual([])
+    expect(scene.triangleCount).toBe(reference.triangleCount)
+    expect(scene.layers.map((l) => l.name)).toEqual(
+      reference.layers.map((l) => l.name),
+    )
+    for (const [i, compiledLayer] of scene.layers.entries()) {
+      for (const kind of ["paint", "erase"] as const) {
+        const actual = compiledLayer[kind]
+        const expected = reference.layers[i][kind]
+        expect(actual.indices).toEqual(expected.indices)
+        expect(actual.vertices.length).toBe(expected.vertices.length)
+        for (let j = 0; j < actual.vertices.length; j++) {
+          if (j % 8 === 6)
+            expect(scene.elementIds[actual.vertices[j]]).toBe(
+              reference.elementIds[expected.vertices[j]],
+            )
+          else expect(actual.vertices[j]).toBe(expected.vertices[j])
+        }
+      }
+    }
+    const render = (input: typeof elements) => {
+      const canvas = createCanvas(64, 64)
+      const drawer = new CircuitToCanvasDrawer(canvas as any)
+      drawer.realToCanvasMat = { a: 10, b: 0, c: 0, d: -10, e: 32, f: 32 }
+      drawer.drawElements(input as any, { layers: [`${layer}_copper`] })
+      return canvas.getContext("2d").getImageData(0, 0, 64, 64).data
+    }
+    const pixels = render([pad])
+    expect(pixels.some((value) => value !== 0)).toBe(true)
+    expect(render(elements)).toEqual(pixels)
+  }
 })
 test("AM3352 compiles without unsupported PCB geometry", () => {
   const scene = compileCircuitJson(large as any)
