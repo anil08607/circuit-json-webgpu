@@ -366,6 +366,14 @@ export class CircuitToWebGpuDrawer {
       filter = o.layers ? new Set(o.layers.map(normalizeLayer)) : undefined
     const visible = this.layers
       .filter((l) => {
+        if (l.name.startsWith("via_surface_")) {
+          return (
+            !xRayActive &&
+            !!o.showSolderMask &&
+            l.name === `via_surface_${selected}` &&
+            (!filter || filter.has(selected))
+          )
+        }
         if (filter && !filter.has(l.name)) return false
         if (xRayActive && !this.isCopper(l.name)) return false
         if (l.name === "board" && !o.showBoardMaterial) return false
@@ -493,6 +501,7 @@ export class CircuitToWebGpuDrawer {
     return 40
   }
   private order(layer: string, selected: string) {
+    if (layer.startsWith("via_surface_")) return 201
     if (layer === "board") return -100
     if (layer === "drill") return 200
     if (layer === "edge_cuts") return 150

@@ -27,6 +27,8 @@ async function render(scene: Scene) {
     hiddenLayerOpacity: 1,
     selectedLayer: scene.layer ?? "top",
     showCopperPours: true,
+    // SVG copper pours have a fixed fill-opacity of 0.5.
+    copperPourOpacity: 0.5,
     showSilkscreen: true,
     showCourtyards: true,
     showFabricationNotes: true,

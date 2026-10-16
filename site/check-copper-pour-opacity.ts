@@ -32,6 +32,25 @@ export async function checkCopperPourOpacity() {
         { route_type: "wire", layer: "top", x: 8, y: 5, width: 1 },
       ],
     },
+    {
+      type: "pcb_trace",
+      pcb_trace_id: "overlap_trace",
+      route: [
+        { route_type: "wire", layer: "top", x: -7, y: 1, width: 0.4 },
+        { route_type: "wire", layer: "top", x: -5, y: 1, width: 0.4 },
+      ],
+    },
+    {
+      type: "pcb_via",
+      pcb_via_id: "tented_via",
+      x: 0,
+      y: -5,
+      layers: ["top", "bottom"],
+      outer_diameter: 1,
+      hole_diameter: 0.5,
+      tented_on_top: true,
+      tented_on_bottom: false,
+    },
   ] as CircuitJson
   const frames: Record<string, string> = {}
   const capture = (name: string) => {
@@ -69,6 +88,16 @@ export async function checkCopperPourOpacity() {
       hiddenLayerOpacity: 0.4,
     })
     capture("independent")
+    drawer.render({ xRayElementIds: ["overlap_trace"], copperPourOpacity: 0 })
+    capture("traceXray")
+    drawer.render({ xRayElementIds: [], showSolderMask: true })
+    capture("tentedTop")
+    drawer.render({ selectedLayer: "bottom" })
+    capture("exposedBottom")
+    drawer.render({ selectedLayer: "top", showSolderMask: false })
+    capture("maskOff")
+    drawer.render({ showSolderMask: true, xRayElementIds: ["tented_via"] })
+    capture("viaXray")
     return { frames, geometryUploads: drawer.stats.geometryUploads }
   } finally {
     drawer.dispose()

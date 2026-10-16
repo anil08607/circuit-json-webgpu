@@ -275,6 +275,28 @@ try {
     )
   }
   assert.equal(pourAlpha("xray", 50), 255, "Selected X-Ray copper stays opaque")
+  assert.equal(
+    pixel(pours.frames.half, 40, 90)[3],
+    128,
+    "Pours clip overlapping traces",
+  )
+  assert.equal(
+    pixel(pours.frames.hidden, 40, 90)[3],
+    255,
+    "Hidden pours restore full traces",
+  )
+  assert.equal(
+    pixel(pours.frames.traceXray, 40, 90)[3],
+    255,
+    "X-Ray preserves full traces",
+  )
+  assert.deepEqual(pixel(pours.frames.tentedTop, 100, 150), [9, 41, 25, 255])
+  for (const name of ["exposedBottom", "maskOff", "viaXray"])
+    assert.deepEqual(
+      pixel(pours.frames[name], 100, 150),
+      [255, 38, 226, 255],
+      "Mask toggles and X-Ray preserve physical drills",
+    )
   assert.equal(pours.geometryUploads, 1, "Opacity changes must reuse geometry")
   const xray = await page.evaluate(() => window.gpuTest.checkXRay())
   const layerColors = {

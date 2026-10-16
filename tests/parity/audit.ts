@@ -56,18 +56,24 @@ const result = spawnSync("bun", ["tests/parity/run.ts"], {
 })
 // The unchanged upstream matcher writes diff/missing files next to its goldens.
 // Move those into the audit artifacts and keep the generated test workspace pristine.
-for (const entry of readdirSync(upstream, {
-  recursive: true,
-  withFileTypes: true,
-})) {
-  if (!entry.isFile()) continue
-  const full = resolve(entry.parentPath, entry.name),
-    path = relative(upstream, full)
-  if (path === "manifest.json" || manifest.files[path]) continue
-  const dest = resolve(actual, "upstream-generated", path)
-  mkdirSync(resolve(dest, ".."), { recursive: true })
-  writeFileSync(dest, readFileSync(full))
-  rmSync(full)
+function moveGeneratedFiles(directory: string) {
+  for (const entry of readdirSync(directory, { withFileTypes: true })) {
+    const full = resolve(directory, entry.name)
+    // Never traverse reference dependencies, including Bun's directory symlinks.
+    if (entry.name === "node_modules" || entry.isSymbolicLink()) continue
+    if (entry.isDirectory()) {
+      moveGeneratedFiles(full)
+      continue
+    }
+    if (!entry.isFile()) continue
+    const path = relative(upstream, full)
+    if (path === "manifest.json" || manifest.files[path]) continue
+    const dest = resolve(actual, "upstream-generated", path)
+    mkdirSync(resolve(dest, ".."), { recursive: true })
+    writeFileSync(dest, readFileSync(full))
+    rmSync(full)
+  }
 }
+moveGeneratedFiles(upstream)
 process.exitCode =
   result.status || (process.env.SNAPSHOT_TEST_ONLY ? 0 : reference.status) || 0
