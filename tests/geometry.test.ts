@@ -27,21 +27,14 @@ function area(mesh: ReturnType<MeshBuilder["build"]>) {
   return area
 }
 
-test("PCB bends produce unsupported-element diagnostics without drawing their centerlines", () => {
+test("PCB bends leave board geometry unchanged without diagnostics", () => {
   const scene = compileCircuitJson(pcbBend as CircuitJson)
-  expect(scene.diagnostics).toEqual([
-    {
-      elementId: "horizontal",
-      type: "pcb_bend",
-      message: "Error: Unsupported PCB element",
-    },
-    {
-      elementId: "vertical",
-      type: "pcb_bend",
-      message: "Error: Unsupported PCB element",
-    },
-  ])
-  expect(scene.layers.some((layer) => layer.name === "bend")).toBe(false)
+  const boardsOnly = compileCircuitJson(
+    pcbBend.filter((element) => element.type !== "pcb_bend") as CircuitJson,
+  )
+  expect(scene.diagnostics).toEqual([])
+  expect(scene.layers).toEqual(boardsOnly.layers)
+  expect(scene.triangleCount).toBe(boardsOnly.triangleCount)
 })
 
 test("through-pad layer transitions connect each wire to its pad anchor", () => {

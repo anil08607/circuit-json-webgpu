@@ -10,8 +10,6 @@ import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
 import { drawPcbCopperPour } from "circuit-to-canvas/lib/drawer/elements/pcb-copper-pour"
 import { DEFAULT_PCB_COLOR_MAP } from "circuit-to-canvas/lib/drawer/types"
 import pixelmatch from "pixelmatch"
-import { Resvg } from "@resvg/resvg-js"
-import { convertCircuitJsonToPcbSvg } from "circuit-to-svg"
 import { featureSnapshot } from "./parity/snapshot"
 import { prepareComparison } from "./parity/prepare"
 import { compose, scale, translate } from "transformation-matrix"
@@ -635,18 +633,7 @@ try {
         .split(",")[1],
     }
   }, pcbBendScene)
-  assert.deepEqual(pcbBend.diagnostics, [
-    {
-      elementId: "horizontal",
-      type: "pcb_bend",
-      message: "Error: Unsupported PCB element",
-    },
-    {
-      elementId: "vertical",
-      type: "pcb_bend",
-      message: "Error: Unsupported PCB element",
-    },
-  ])
+  assert.deepEqual(pcbBend.diagnostics, [])
   // The owning boards remain, but neither bend centerline is rendered.
   assert.deepEqual(pixel(pcbBend.png, 123, 215), [0, 0, 0, 255])
   assert.deepEqual(pixel(pcbBend.png, 623, 408), [0, 0, 0, 255])
