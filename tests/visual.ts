@@ -64,7 +64,8 @@ try {
       console.error(m.text())
     }
   })
-  await page.goto(server.resolvedUrls!.local[0])
+  const siteUrl = server.resolvedUrls!.local[0]
+  await page.goto(siteUrl)
   await page.waitForFunction(() => window.gpuTest, null, { timeout: 30000 })
   const visibility = await page.evaluate(() =>
     window.gpuTest.checkBoardVisibility(),
@@ -772,9 +773,21 @@ try {
       assert(at(400, 280)[0] < 100)
     }
   }
+  await page.goto(`${siteUrl}?renderViasInHighDetail=false`)
+  await page.waitForFunction(() => window.gpuTest, null, { timeout: 30000 })
   const large = await page.evaluate(() => window.gpuTest.renderLarge())
   assert.deepEqual(large.diagnostics, [])
   await snapshot("am3352-dev-board")
+  const denseTopVias = await page.evaluate(() =>
+    window.gpuTest.renderDenseVias("top"),
+  )
+  assert.deepEqual(denseTopVias.diagnostics, [])
+  await snapshot("dense-vias-top")
+  const denseInnerVias = await page.evaluate(() =>
+    window.gpuTest.renderDenseVias("inner1"),
+  )
+  assert.deepEqual(denseInnerVias.diagnostics, [])
+  await snapshot("dense-vias-inner")
   const navigation = await page.evaluate(
     async (frameCount) => {
       const drawer = window.gpuTest.drawer,
