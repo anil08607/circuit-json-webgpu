@@ -721,16 +721,39 @@ try {
     if (name === "silkscreen-text-over-holes") {
       assert.deepEqual(
         at(288, 300),
-        [255, 38, 226],
-        "Repro: the unplated hole covers top silkscreen text",
+        [242, 237, 161],
+        "Top silkscreen text must stay above the unplated hole",
       )
       assert.deepEqual(
         at(512, 300),
-        [255, 38, 226],
-        "Repro: the plated hole covers bottom silkscreen text",
+        [242, 237, 161],
+        "Bottom silkscreen text must stay above the plated hole",
       )
       assert.deepEqual(at(288, 286), [255, 38, 226])
       assert.deepEqual(at(512, 286), [255, 38, 226])
+      const textVisibility = await page.evaluate(() => {
+        const drawer = window.gpuTest.drawer
+        const canvas = document.querySelector("canvas")!
+        drawer.render({ hiddenLayerOpacity: 0.4 })
+        const dimmed = canvas.toDataURL("image/png").split(",")[1]
+        drawer.render({ showSilkscreen: false })
+        return {
+          dimmed,
+          hidden: canvas.toDataURL("image/png").split(",")[1],
+        }
+      })
+      assert.deepEqual(
+        pixel(textVisibility.dimmed, 512, 300),
+        [250, 118, 200, 255],
+      )
+      assert.deepEqual(
+        pixel(textVisibility.hidden, 288, 300),
+        [255, 38, 226, 255],
+      )
+      assert.deepEqual(
+        pixel(textVisibility.hidden, 512, 300),
+        [255, 38, 226, 255],
+      )
     }
     if (name === "silkscreen-graphics") {
       // World coordinates use the gallery's 14 px/mm camera. Check ink and

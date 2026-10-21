@@ -369,7 +369,11 @@ export class CircuitToWebGpuDrawer {
       filter = o.layers ? new Set(o.layers.map(normalizeLayer)) : undefined
     const visible = this.layers
       .filter((l) => {
-        if (filter && !filter.has(l.name)) return false
+        if (
+          filter &&
+          !filter.has(l.name.replace(/_silkscreen_text$/, "_silkscreen"))
+        )
+          return false
         if (xRayActive && !this.isCopper(l.name)) return false
         if (l.name === "board" && !o.showBoardMaterial) return false
         if (
@@ -405,6 +409,9 @@ export class CircuitToWebGpuDrawer {
       ...selectedLayers.map((layer) => ({ layer, xRay: true })),
     ]
     const encoder = this.device.createCommandEncoder()
+    const drillText = visible.filter((layer) =>
+      layer.name.endsWith("_silkscreen_text"),
+    )
     for (const { layer, xRay } of renderLayers) {
       this.ensureTexture(layer, width, height)
       const target = layer.texture!.createView(),
@@ -438,6 +445,9 @@ export class CircuitToWebGpuDrawer {
         pass.drawIndexed(mesh.count)
       }
       pass.end()
+      const text = layer.name === "drill" && !xRay ? drillText : []
+      if (layer.name === "drill")
+        layer.composite = this.createComposite(layer, text)
       this.device.queue.writeBuffer(
         layer.opacity,
         0,
@@ -447,9 +457,13 @@ export class CircuitToWebGpuDrawer {
             : xRayActive && this.isCopper(layer.name)
               ? Math.max(0, Math.min(1, o.hiddenLayerOpacity ?? 0.4))
               : this.opacity(layer.name, selected, o.hiddenLayerOpacity ?? 0.4),
-          0,
-          0,
-          0,
+          text[0]
+            ? this.opacity(text[0].name, selected, o.hiddenLayerOpacity ?? 0.4)
+            : 0,
+          text[1]
+            ? this.opacity(text[1].name, selected, o.hiddenLayerOpacity ?? 0.4)
+            : 0,
+          text.length ? 1 : 0,
         ]),
       )
     }
@@ -539,12 +553,23 @@ export class CircuitToWebGpuDrawer {
       usage:
         GPUTextureUsage.RENDER_ATTACHMENT | GPUTextureUsage.TEXTURE_BINDING,
     })
-    layer.composite = this.device.createBindGroup({
+    layer.composite = this.createComposite(layer)
+  }
+  private createComposite(layer: Layer, text: Layer[] = []) {
+    return this.device.createBindGroup({
       layout: this.compositePipeline.getBindGroupLayout(0),
       entries: [
-        { binding: 0, resource: layer.texture.createView() },
+        { binding: 0, resource: layer.texture!.createView() },
         { binding: 1, resource: this.sampler },
         { binding: 2, resource: { buffer: layer.opacity } },
+        {
+          binding: 3,
+          resource: (text[0]?.texture ?? layer.texture)!.createView(),
+        },
+        {
+          binding: 4,
+          resource: (text[1]?.texture ?? layer.texture)!.createView(),
+        },
       ],
     })
   }
