@@ -96,11 +96,7 @@ test("JAE shell-pad rendering matches its snapshot", async () => {
   await expectSnapshot(actual, "jae-shell-pad-snapshot")
 }, 60_000)
 
-test.failing(
-  "JAE shell pad rotates copper and slot together",
-  async () => {
-    const reference = await render(0, 90)
-    await expectSnapshot(await render(90), "jae-shell-pad-rotation", reference)
-  },
-  60_000,
-)
+test("JAE shell pad rotates copper and slot together", async () => {
+  const reference = await render(0, 90)
+  await expectSnapshot(await render(90), "jae-shell-pad-rotation", reference)
+}, 60_000)

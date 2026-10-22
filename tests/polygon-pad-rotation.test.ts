@@ -14,7 +14,7 @@ for (const { rotation, copper, center } of [
     center: [9.180384758, 5.219615242],
   },
 ]) {
-  const regression = rotation === 0 ? test : test.failing
+  const regression = test
   regression(
     `JAE shell copper, drill and mask follow ${rotation}° placement`,
     () => {
@@ -42,7 +42,7 @@ for (const { rotation, copper, center } of [
   )
 }
 
-test.failing.each(["circle", "oval", "rotated_pill"] as const)(
+test.each(["circle", "oval", "rotated_pill"] as const)(
   "polygon-pad %s drill offsets rotate with the pad",
   (hole_shape) => {
     const scene = compileCircuitJson([
