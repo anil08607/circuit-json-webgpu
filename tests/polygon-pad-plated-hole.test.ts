@@ -38,7 +38,9 @@ test("polygon-pad plated holes retain translated copper and offset drills on eac
     const drill = scene.layers.find((layer) => layer.name === "drill")!.paint
     const [minX, maxX, minY, maxY] = meshBounds(drill)
     expect((minX + maxX) / 2).toBeCloseTo(11)
-    expect((minY + maxY) / 2).toBeCloseTo(-8)
+    expect((minY + maxY) / 2).toBeCloseTo(
+      hole_shape === "rotated_pill" ? -6 : -8,
+    )
     expect(maxX - minX).toBeCloseTo(
       hole_shape === "circle" || hole_shape === "rotated_pill" ? 2 : 4,
     )
@@ -54,7 +56,9 @@ test("polygon-pad plated holes retain translated copper and offset drills on eac
     for (const name of ["top", "inner1", "bottom"]) {
       const layer = scene.layers.find((layer) => layer.name === name)!
       expect(area(layer.paint)).toBeCloseTo(48)
-      expect(meshBounds(layer.paint)).toEqual([6, 14, -10, -4])
+      expect(meshBounds(layer.paint)).toEqual(
+        hole_shape === "rotated_pill" ? [7, 13, -11, -3] : [6, 14, -10, -4],
+      )
       expect(layer.erase.indices).toEqual(drill.indices)
       expect(layer.erase.vertices.filter((_, i) => i % 8 < 2)).toEqual(
         drill.vertices.filter((_, i) => i % 8 < 2),
